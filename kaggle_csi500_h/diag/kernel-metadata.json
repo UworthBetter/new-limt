@@ -1,0 +1,11 @@
+{
+  "id": "beelingz/csi500-diag",
+  "title": "csi500-diag",
+  "code_file": "csi500_diag.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "dataset_sources": ["beelingz/csi500-newlimt"]
+}

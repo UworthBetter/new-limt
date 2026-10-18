@@ -1,0 +1,29 @@
+[{"stream_name":"stderr","time":6.324708778,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.324762972,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.324788017,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.324794998,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":6.897735898,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.897794861,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.897803022,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.897807644,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":7.941247077,"data":"--- /kaggle/input ---\r\n"}
+,{"stream_name":"stdout","time":8.064274988,"data":"total 12\r\n"}
+,{"stream_name":"stdout","time":8.064302038,"data":"drwxr-xr-x 3 root root 4096 Oct 18 13:31 .\r\n"}
+,{"stream_name":"stdout","time":8.064305318,"data":"drwxr-xr-x 8 root root 4096 Oct 18 13:31 ..\r\n"}
+,{"stream_name":"stdout","time":8.064307639999999,"data":"drwxr-xr-x 3 root root 4096 Oct 18 13:31 datasets\r\n"}
+,{"stream_name":"stdout","time":8.172222435,"data":"--- recursive (2 levels) ---\r\n"}
+,{"stream_name":"stdout","time":8.28589407,"data":"/kaggle/input\r\n"}
+,{"stream_name":"stdout","time":8.285916012,"data":"/kaggle/input/datasets\r\n"}
+,{"stream_name":"stdout","time":8.285920648,"data":"/kaggle/input/datasets/beelingz\r\n"}
+,{"stream_name":"stdout","time":8.394557757,"data":"--- gpu ---\r\n"}
+,{"stream_name":"stdout","time":8.538666021000001,"data":"GPU 0: Tesla T4 (UUID: GPU-44d15312-3309-8434-c03a-9cc2947db502)\r\n"}
+,{"stream_name":"stdout","time":8.538692161,"data":"GPU 1: Tesla T4 (UUID: GPU-b9d883ee-7aa3-71b2-0d84-1ebd63337e9a)\r\n"}
+,{"stream_name":"stderr","time":10.871784492,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":10.87181312,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":11.022940088,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":11.022980089,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":11.734183006,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":11.804962799,"data":"[NbConvertApp] Writing 2305 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":14.280412874,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":14.755626055,"data":"[NbConvertApp] Writing 273945 bytes to __results__.html\n"}
+]

@@ -3,7 +3,7 @@
 # Dataset layout is FLAT (kaggle CLI skips subdirectories): all code files and the
 # three CSI500 npz artifacts sit at the dataset root.
 set -euo pipefail
-SRC="/kaggle/input/csi500-newlimt"
+SRC="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
 WORK="/kaggle/working"
 mkdir -p "$WORK/w0w2/data/v2" "$WORK/runs_kaggle"
 # The Data() loader reads csi300 filenames; expose the CSI500 artifacts under those names.

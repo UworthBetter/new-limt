@@ -1,0 +1,13 @@
+2026-10-18 19:44:59 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.QUEUED"
+2026-10-18 19:55:04 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.QUEUED"
+2026-10-18 20:05:08 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.QUEUED"
+2026-10-18 20:15:12 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.QUEUED"
+2026-10-18 20:25:17 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.QUEUED"
+2026-10-18 20:35:21 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.QUEUED"
+2026-10-18 20:45:25 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.QUEUED"
+2026-10-18 20:55:29 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.QUEUED"
+2026-10-18 21:05:33 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.QUEUED"
+2026-10-18 21:15:38 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.RUNNING"
+2026-10-18 21:25:43 kernel: beelingz/csi500-h-kaggle has status "KernelWorkerStatus.COMPLETE"
+Kernel log downloaded to D:/research/new_LiMT/runs/kaggle_incoming/csi500_H_v2\csi500-h-kaggle.log 
+KAGGLE_PIPELINE_V2_DONE
