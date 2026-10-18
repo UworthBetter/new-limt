@@ -1,0 +1,36 @@
+{
+ "tag": "final_C0_vs_G0_seed1_tau0.50_default",
+ "n_days": 486,
+ "sigma_d_daily": 0.0007492382991585498,
+ "sigma_d_annualized": 0.011893789273791222,
+ "mde80_pp": 1.581109699058926,
+ "mean_daily_diff": -2.5255058707131266e-05,
+ "annualized_diff_pp": -0.6364274794197079,
+ "cost_drag_annualized_pp": {
+  "a": 4.969988033797615,
+  "b": 4.951242719964338,
+  "a_minus_b": 0.018745313833277988
+ },
+ "holdings_overlap": {
+  "n": 485,
+  "mean": 0.9612268628986367,
+  "median": 0.9607843137254902
+ },
+ "rank_correlation": {
+  "n": 485,
+  "mean": 0.9997464074459341,
+  "median": 0.9997656618257728
+ },
+ "dates": [
+  "2019-01-03",
+  "2020-12-31"
+ ],
+ "mode": "final",
+ "meta": {
+  "c0_checkpoint_sha256": "dfcfa360034ac37f26e66f6486cf95e796062c1ed57d27d06f4b6f2eb2b667b3",
+  "g0_checkpoint_sha256": "c841d7703fd6f48c9cd0bac1e64199fe6e5737e69620802eed79653d2969eeec"
+ },
+ "rule": "topk50 drop5 every1d (default)",
+ "window": "valid 2019-2020",
+ "sigma_d_definition": "SD(daily paired net return diff, ddof=1) * sqrt(252)"
+}
