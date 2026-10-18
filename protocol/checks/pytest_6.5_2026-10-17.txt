@@ -1,0 +1,9 @@
+.......F.                                                                [100%]
+================================== FAILURES ===================================
+E   AssertionError: A-G0-1/2/3 not met: history has no validation_zero_fee_mean_log; history has no validation_real_fee_mean_log; portfolio_events has no min_fee/lot
+    assert not ['history has no validation_zero_fee_mean_log', 'history has no validation_real_fee_mean_log', 'portfolio_events has no min_fee/lot']
+D:\research\new_LiMT\tests\test_preregistration_assertions.py:114: AssertionError: A-G0-1/2/3 not met: history has no validation_zero_fee_mean_log; history has no validation_real_fee_mean_log; portfolio_events has no min_fee/lot
+=========================== short test summary info ===========================
+FAILED tests/test_preregistration_assertions.py::test_a_g0_selection_uses_separate_real_fee_monitoring_ledger - AssertionError: A-G0-1/2/3 not met: history has no validation_zero_fee_mean_log; history has no validation_real_fee_mean_log; portfolio_events has no min_fee/lot
+assert not ['history has no validation_zero_fee_mean_log', 'history has no validation_real_fee_mean_log', 'portfolio_events has no min_fee/lot']
+1 failed, 8 passed in 5.75s

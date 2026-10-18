@@ -1,0 +1,18 @@
+pytest tests/test_a_g0_a_lbl.py
+interpreter: D:\research\limt-repro\.venv\Scripts\python.exe
+date: 2026-10-17
+
+1 passed, 4 failed
+
+PASSED test_a_lbl_1_counterexamples_and_h5_endpoint
+  fix1 CSI300 labels:
+  SZ002074 2018-12-26 raw r1 = 2.03236%, numerator 2018-12-28, entry t+1
+  SH600549 2019-06-26 raw r1 = 1.27604%, numerator 2019-06-28, entry t+1
+  both signals: h5 exit is t+6 and raw h5 equals close(t+6)/close(t+1)-1
+
+FAILED test_a_g0_1_training_zero_fee_and_separate_monitoring_ledger
+FAILED test_a_g0_2_g0_and_c0_share_real_fee_selection_key
+FAILED test_a_g0_3_toy_panel_selects_real_fee_argmax_not_zero_fee
+FAILED test_a_g0_4_resolved_configs_differ_only_by_training_fee
+
+A-G0 failures are the expected block. Do not start a formal train on the current selector.

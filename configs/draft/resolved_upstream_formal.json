@@ -1,0 +1,48 @@
+{
+  "status": "DRAFT",
+  "transcribed_on": "2026-10-17",
+  "source": "validate_config(dict(DEFAULT, **limt-repro/configs/w4w6_formal.json))",
+  "gate_b_frozen": false,
+  "note": "This is what the current orchestrator would run. It is not the preregistration target and it is not Gate B frozen.",
+  "config": {
+    "mode": "formal",
+    "seeds": [
+      1
+    ],
+    "dimension": 256,
+    "lookback": 21,
+    "batch_days": 4,
+    "max_symbols": 0,
+    "train_days": 0,
+    "valid_days": 0,
+    "report_days": 0,
+    "epochs_h": 50,
+    "epochs_finetune": 20,
+    "patience": 8,
+    "lr_h": 0.0001,
+    "lr_finetune": 1e-05,
+    "tau": 0.5,
+    "alpha_aux": 0.3,
+    "gamma_to": 0.001,
+    "beta_risk": 0.0,
+    "buy_rate": 0.0005,
+    "sell_rate": 0.0015,
+    "clip_norm": 1.0,
+    "amp": false,
+    "threads": 8,
+    "ridge_alpha": 10.0,
+    "rules": [
+      "soft",
+      "topk-reference",
+      "topk-execution"
+    ],
+    "topk": 50,
+    "drop": 5,
+    "capital": 100000000.0,
+    "min_fee": 5.0,
+    "lot": 100,
+    "device": "cuda",
+    "st_policy": "limits_only",
+    "evaluation_end": "2026-06-30"
+  }
+}

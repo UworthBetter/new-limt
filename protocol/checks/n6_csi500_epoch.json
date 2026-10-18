@@ -1,0 +1,20 @@
+{
+  "market": "csi500",
+  "group": "H",
+  "epochs": 1,
+  "symbols": 1802,
+  "train_days": 2671,
+  "valid_days": 485,
+  "updates": 668,
+  "batch_days": 4,
+  "dimension": 256,
+  "lookback": 21,
+  "amp": false,
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "load_seconds": 10.531928000011249,
+  "epoch_seconds": 510.4311293999781,
+  "epoch_includes_validation_replay": true,
+  "peak_allocated_mib": 2946.70751953125,
+  "filename_alias": "Data() still requests csi300 names; files are hardlinks to the csi500 W1/W2 artifacts",
+  "evaluation_outputs_written": false
+}

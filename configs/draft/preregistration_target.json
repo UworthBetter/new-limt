@@ -1,0 +1,54 @@
+{
+  "status": "DRAFT",
+  "transcribed_on": "2026-10-17",
+  "source": "PREREGISTRATION_v0.5.md sections 2, 5, 6, 8, 8A",
+  "gate_b_frozen": false,
+  "runnable_by_v2_w6_run": false,
+  "network": {
+    "d": 256,
+    "lookback": 21,
+    "batch_days": 4,
+    "head_cross": 4,
+    "head_temp": 2,
+    "n_experts": 4,
+    "note": "heads and experts are the values in limt-repro src/model.py and v2_w4_training.make_model, recorded after the 2026-10-17 code check"
+  },
+  "optimizer": "Adam",
+  "amp": false,
+  "clip_norm": 1,
+  "epochs": {"H": 50, "finetune": 20, "patience": 8},
+  "learning_rate": {"H": 0.0001, "finetune": 0.00001},
+  "loss": {
+    "H": {"h5": 0.65, "zv": 0.30, "zs": 0.05, "target": "cross-sectional z-score, MSE"},
+    "H-FT": "supervised loss only",
+    "G0": "zero-fee gross log growth + 0.3 * h5 auxiliary",
+    "C0": "real-fee after-cost mean log growth + 0.3 * h5 auxiliary",
+    "C-T": "C0 plus gamma_to = 0.001 on seed 1 only"
+  },
+  "checkpoint_selection": "validation real-fee after-cost mean log growth for H-FT, G0, C0, C-T; H uses validation supervised loss",
+  "tau_grid": [0.5, 0.75, 1.0],
+  "fees": {
+    "buy": 0.0005,
+    "sell": 0.0015,
+    "min_cny": 5,
+    "lot": 100,
+    "capital": 100000000
+  },
+  "execution_grid": {
+    "topk": 50,
+    "n_drop": [2, 5, 10, 20],
+    "rebalance_days": [1, 5],
+    "default_rule": {"topk": 50, "n_drop": 5, "rebalance_days": 1}
+  },
+  "periods": {
+    "train": ["2008-01-01", "2018-12-31"],
+    "valid": ["2019-01-01", "2020-12-31"],
+    "rule_select": ["2021-01-01", "2022-12-31"],
+    "eval": ["2023-01-01", "2026-06-30"]
+  },
+  "markets": ["CSI300", "CSI500"],
+  "csi500_tuning": false,
+  "baselines": ["ridge_h5", "lightgbm_regression", "lightgbm_lambdarank"],
+  "gpu_arms": ["H", "H-FT", "G0", "C0", "C-T"],
+  "excluded": ["L0", "clean_1day_H_retrain", "bridge_ladder", "MASTER", "SOFT", "beta_risk", "sharpe"]
+}

@@ -1,0 +1,212 @@
+{
+ "0_array_contract": {
+  "status": "PASS",
+  "missing": [],
+  "dates": 4707,
+  "symbols": 1802
+ },
+ "1_SZ002074_2018-12-26": {
+  "status": "PASS",
+  "r1_pct": 2.03236,
+  "expected": 2.03236,
+  "numerator_date": "2018-12-28",
+  "label_mask": false,
+  "universe": false
+ },
+ "1_SH600549_2019-06-26": {
+  "status": "PASS",
+  "r1_pct": 1.27604,
+  "expected": 1.27604,
+  "numerator_date": "2019-06-28",
+  "label_mask": false,
+  "universe": false
+ },
+ "2_endpoint_misalignment": {
+  "status": "PASS",
+  "r1": {
+   "train": {
+    "cells": 1269156,
+    "misaligned": 0
+   },
+   "valid": {
+    "cells": 242821,
+    "misaligned": 0
+   },
+   "test": {
+    "cells": 695839,
+    "misaligned": 0
+   },
+   "other": {
+    "cells": 69246,
+    "misaligned": 0
+   },
+   "total_misaligned": 0,
+   "standardized_misaligned": 0
+  },
+  "h5": {
+   "train": {
+    "cells": 1261604,
+    "misaligned": 0
+   },
+   "valid": {
+    "cells": 242624,
+    "misaligned": 0
+   },
+   "test": {
+    "cells": 693503,
+    "misaligned": 0
+   },
+   "other": {
+    "cells": 68870,
+    "misaligned": 0
+   },
+   "total_misaligned": 0,
+   "standardized_misaligned": 0
+  },
+  "zv": {
+   "train": {
+    "cells": 1232119,
+    "misaligned": 0
+   },
+   "valid": {
+    "cells": 242417,
+    "misaligned": 0
+   },
+   "test": {
+    "cells": 695317,
+    "misaligned": 0
+   },
+   "other": {
+    "cells": 64509,
+    "misaligned": 0
+   },
+   "total_misaligned": 0,
+   "standardized_misaligned": 0
+  },
+  "zs": {
+   "train": {
+    "cells": 1278493,
+    "misaligned": 0
+   },
+   "valid": {
+    "cells": 242922,
+    "misaligned": 0
+   },
+   "test": {
+    "cells": 695994,
+    "misaligned": 0
+   },
+   "other": {
+    "cells": 70121,
+    "misaligned": 0
+   },
+   "total_misaligned": 0,
+   "standardized_misaligned": 0
+  }
+ },
+ "3_old_vs_new_diff": {
+  "status": "NOT_CHECKED",
+  "diagnostics": {},
+  "reason": "descriptive comparison, not an acceptance condition"
+ },
+ "4_purge": {
+  "status": "PASS",
+  "train": {
+   "signal_days": 2677,
+   "candidate_samples": 1217221,
+   "purged": 2972,
+   "purged_days": 6,
+   "kept": 1214249,
+   "max_label_end": "2018-12-28",
+   "split_end": "2018-12-31",
+   "next_start": "2019-01-01",
+   "ok": true
+  },
+  "valid": {
+   "signal_days": 487,
+   "candidate_samples": 242162,
+   "purged": 2993,
+   "purged_days": 6,
+   "kept": 239169,
+   "max_label_end": "2020-12-31",
+   "split_end": "2020-12-31",
+   "next_start": "2021-01-01",
+   "ok": true
+  },
+  "rule_select": {
+   "signal_days": 485,
+   "candidate_samples": 241406,
+   "purged": 2974,
+   "purged_days": 6,
+   "kept": 238432,
+   "max_label_end": "2022-12-30",
+   "split_end": "2022-12-31",
+   "next_start": "2023-01-01",
+   "ok": true
+  },
+  "eval": {
+   "signal_days": 843,
+   "candidate_samples": 420096,
+   "purged": 3000,
+   "purged_days": 6,
+   "kept": 417096,
+   "max_label_end": "2026-06-30",
+   "split_end": "2026-06-30",
+   "next_start": "2099-01-01",
+   "ok": true
+  }
+ },
+ "5_masks": {
+  "status": "PASS",
+  "coverage": {
+   "universe_mask": 2353859,
+   "feature_mask": 2288565,
+   "universe_and_feature": 2288565,
+   "label_mask_r1": 2277062,
+   "label_mask_h5": 2266601,
+   "label_mask_zv": 2234362,
+   "label_mask_zs": 2287530,
+   "label_mask_multi": 2234362,
+   "execution_state_counts": {
+    "0": 6522190,
+    "1": 1800185,
+    "2": 99387,
+    "3": 60252,
+    "4": 0
+   },
+   "unknown_state_policy": "State 4 forbids buy/sell; retain unknown provenance, never relabel as confirmed suspension.",
+   "universe_without_label_r1": 76797,
+   "universe_without_label_h5": 87258,
+   "last_universe_date": "2026-10-13",
+   "last_label_h5_date": "2026-09-28"
+  },
+  "independence": {
+   "universe_equals_spanfile_only": true,
+   "rebuilt_feature_probe_passed": true,
+   "probe_evidence": {
+    "prefix_days": 3310,
+    "last_day": "2020-12-31",
+    "compared_values": 261401362
+   },
+   "alpha158_rebuild_cut": {
+    "method": "physically_truncated_provider",
+    "requested_cut": "2020-12-31",
+    "cut_date": "2020-12-31",
+    "frozen_normalizer": true,
+    "provider": {
+     "calendar_days": 5089,
+     "last_date": "2020-12-31",
+     "raw_files": 18020
+    },
+    "cells": 1654439,
+    "compared_values": 261401362,
+    "max_abs_feat_diff": 0.0,
+    "feature_row_mismatch": 0,
+    "feature_mask_mismatch": 0,
+    "universe_mismatch": 0,
+    "status": "PASS"
+   },
+   "universe_rows_with_no_future_label": 87258
+  }
+ }
+}

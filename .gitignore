@@ -1,0 +1,13 @@
+__pycache__/
+data/**/*.npz
+data/**/*.npy
+.pytest_cache/
+*.pyc
+runs/**
+!runs/README.md
+results/**
+!results/README.md
+logs/**
+!logs/README.md
+*.pt
+*.npz
