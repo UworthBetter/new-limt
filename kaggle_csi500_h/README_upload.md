@@ -9,20 +9,11 @@
 - **H 不需要 execution feed**（纯监督训练）；G0/C0 需要 CSI500 对齐的成交账本，那个是本地数据工程（baostock 断点续传下载 1802 只），与 Kaggle 无关，另行推进。
 - 预计 Kaggle 用量：早停同 CSI300（~11-15 epoch）≈ 每 seed 1.6-2.2h，3 seeds ≈ 5-7h（一个 12h 会话内）；最坏 50 epoch 不早停 ≈ 21h → 第二个会话续跑（脚本按 seed 断点续传、每个 seed 完成后重新打包 zip）。
 
-## 上传步骤（一次性，约 30-60 分钟人工）
+## 上传方式（ZCode 已于 2026-10-18 晚用 API 代办）
 
-1. Kaggle 网站 → Datasets → New Dataset，命名 **csi500-newlimt**（必须用这个名字，脚本按它找路径）。
-2. 上传以下结构（建一个本地文件夹再整体拖入；共 ~5.7GB）：
-   ```
-   csi500-newlimt/
-     data/new_v2_panel_csi500.npz     (5.4GB, D:\research\new_LiMT\data\csi500_w1w2\data\v2\)
-     data/new_v2_labels_csi500.npz    (230MB)
-     data/new_v2_splits_csi500.npz    (334KB)
-     code/                            (本目录 code/ 下全部 11 个文件)
-   ```
-3. Notebooks → New Notebook → File → Import Notebook → 上传本目录 `csi500_H_kaggle.ipynb`。
-4. 右侧 Add Input → 选刚建的 dataset；Settings → Accelerator → GPU T4 x2（或 P100）；Internet 关闭也行。
-5. Run All。第一个 cell 会打印环境、**CSI500 DATA_VERSION**、**CONFIG_HASH**（见下方核对值）。
+数据集 `beelingz/csi500-newlimt` 已创建：v1 = code（11 个文件），v2 = +三个 CSI500 npz（5.7GB）。布局**扁平**（kaggle CLI 跳过子目录）：所有文件在数据集根，`kaggle_run.sh` 按此取路径。若需手工重传，staging 在 `kaggle_csi500_h/upload/`（npz 为硬链接，不占额外磁盘）。
+
+手动路径（备查）：Kaggle → Datasets → New Dataset → 命名 `csi500-newlimt` → 上传 `upload/` 下全部文件 → Notebooks → Import `csi500_H_kaggle.ipynb` → Add Input 挂载数据集 → GPU T4/P100 → Run All。
 
 ## 结果回收
 
