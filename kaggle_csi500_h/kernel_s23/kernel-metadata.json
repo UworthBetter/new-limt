@@ -1,0 +1,13 @@
+{
+ "id": "beelingz/csi500-h-s23",
+ "title": "csi500-h-s23",
+ "code_file": "csi500_H_kaggle.ipynb",
+ "language": "python",
+ "kernel_type": "notebook",
+ "is_private": true,
+ "enable_gpu": true,
+ "enable_internet": false,
+ "dataset_sources": [
+  "beelingz/csi500-newlimt"
+ ]
+}
