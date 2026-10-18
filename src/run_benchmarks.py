@@ -52,7 +52,7 @@ def build_master(data, z_r1, day_lo, day_hi):
     feats = np.asarray(data.features[day_lo:day_hi + 1, :, cols], np.float32)
     labels = z_r1[day_lo:day_hi + 1].astype(np.float32)
     arr = np.concatenate([feats, labels[..., None]], axis=2)
-    dates = [str(d) for d in data.dates[day_lo:day_hi + 1]]
+    dates = pd.to_datetime([str(d) for d in data.dates[day_lo:day_hi + 1]])
     index = pd.MultiIndex.from_product([dates, list(data.symbols)], names=["datetime", "instrument"])
     frame = pd.DataFrame(arr.reshape(-1, arr.shape[2]), index=index,
                          columns=FILTER20 + ["LABEL0"])
@@ -126,7 +126,8 @@ def score_matrix(preds, dates, symbols):
     sym_at = {s: j for j, s in enumerate(symbols)}
     out = np.full((len(dates), len(symbols)), np.nan, np.float32)
     for (day, sym), value in preds.items():
-        i, j = date_at.get(day), sym_at.get(sym)
+        key = day if isinstance(day, str) else pd.Timestamp(day).strftime("%Y-%m-%d")
+        i, j = date_at.get(key), sym_at.get(sym)
         if i is not None and j is not None:
             out[i, j] = value
     return out
@@ -184,6 +185,10 @@ def main():
         module = __import__(entry["module"], fromlist=[entry["class"]])
         cls = getattr(module, entry["class"])
         kwargs = dict(entry["kwargs"])
+        # n_jobs is a DataLoader infra knob (workers), not a model hyperparameter;
+        # 0 keeps loading in the main process (Windows spawn cannot pickle the
+        # in-memory dataset). All other kwargs stay verbatim from the yaml.
+        kwargs["n_jobs"] = 0
         if name == "Transformer":
             kwargs.setdefault("seed", 0)
         model = cls(**kwargs)
