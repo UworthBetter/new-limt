@@ -1,0 +1,23 @@
+{
+  "gate": "A",
+  "completed": "2026-10-18T16:54:08+08:00",
+  "honest_sequencing": "Gate A completed AFTER the seed-1 runs (H 2026-10-17; tau grid / H-FT / dose arm 2026-10-18). No date backdated.",
+  "commits": {
+    "baseline": "8a7a4c45493b562712177688c9d52118a51b3fb3",
+    "deviation_log_five_entries": "c8c6c2799f4ea60a9ab6228a3b283490a7b4c72b (2026-10-18T16:45:28+08:00, precedes every run it covers)",
+    "gate_a_fills": "841f00becdee4df72a052c102392266d7b9bf9e2"
+  },
+  "sigma_d_prelim": {
+    "value_annualized": 0.06778783646394707,
+    "mde80_pp": 9.011426320419643,
+    "pair": "ridge_h5 vs H seed1, default rule (topk50 drop5 daily), executed share-ledger books, 485 paired days 2019-2020",
+    "file": "protocol/checks/sigma_d_prelim_2026-10-18.json",
+    "caveat": "two different models: upper-bound-style proxy; C0-G0 twin fine-tunes expected far smaller"
+  },
+  "assertions_rerun": "14/14 on trainer sha256 a960a9951ab52c5455c15f8e0c5d60a783a6beb4beef5b4003ee578f0c21ee43 (protocol/checks/pytest_gate_a_2026-10-18.txt)",
+  "explicitly_open": [
+    "Section 11 authors-repository backtest config check (N10) - treated as unspecified, sensitivity reported",
+    "Section 13 hard write-up date - user decision, to fix before Gate C",
+    "Section 16.5 prior-art completion - partial search only (limitation 8)"
+  ]
+}
