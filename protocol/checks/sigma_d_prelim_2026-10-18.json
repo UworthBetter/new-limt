@@ -1,0 +1,36 @@
+{
+ "tag": "prelim_ridge_h5_vs_H_seed1_default",
+ "n_days": 486,
+ "sigma_d_daily": 0.004270232314255238,
+ "sigma_d_annualized": 0.06778783646394707,
+ "mde80_pp": 9.011426320419643,
+ "mean_daily_diff": 9.129405899244249e-05,
+ "annualized_diff_pp": 2.300610286609551,
+ "cost_drag_annualized_pp": {
+  "a": 5.044173235434898,
+  "b": 4.973992986798319,
+  "a_minus_b": 0.07018024863657893
+ },
+ "holdings_overlap": {
+  "n": 485,
+  "mean": 0.46317969696504424,
+  "median": 0.46153846153846156
+ },
+ "rank_correlation": {
+  "n": 485,
+  "mean": 0.5309923735148574,
+  "median": 0.5474304899458095
+ },
+ "dates": [
+  "2019-01-03",
+  "2020-12-31"
+ ],
+ "mode": "prelim",
+ "meta": {
+  "ridge_samples": 738742,
+  "h_checkpoint_sha256": "211297d104fbcd55fd8c19fae32f89b815e37ee31e8c2cb1829172303ad8e073"
+ },
+ "rule": "topk50 drop5 every1d (default)",
+ "window": "valid 2019-2020",
+ "sigma_d_definition": "SD(daily paired net return diff, ddof=1) * sqrt(252)"
+}

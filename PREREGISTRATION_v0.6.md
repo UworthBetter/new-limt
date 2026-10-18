@@ -1,11 +1,13 @@
 # Preregistration: Cost-Aware Training for LiMT (Clean-Pipeline Study)
 
-Version: v0.6 DRAFT (2026-10-18, Asia/Shanghai). Fields marked `[FILL]` must be completed before the commit. Items marked `[DECISION]` need an explicit sign-off before Gate A. Items marked `[VERIFY-IN-CODE]` are stated from reports or memory and must be checked against the code before commit.
-Author(s): [FILL]
-Commit hash / timestamp of this file: [FILL at Gate A]
-Pipeline provenance: fix1 labels sha e15ed6f6...; formal pre-run gate run3 (87 pytest items passed; SHA256SUMS consistent for 39 files). Full hashes: [FILL]
+Version: v0.6 (Gate A completed 2026-10-18; see protocol/gates.md — completed after the seed-1 runs, no backdating). Fields marked `[FILL]` must be completed before the commit. Items marked `[DECISION]` need an explicit sign-off before Gate A. Items marked `[VERIFY-IN-CODE]` are stated from reports or memory and must be checked against the code before commit.
+Author(s): Jinghui Tang (唐璟辉), Henan University of Economics and Law
+Commit hash / timestamp of this file: recorded at Gate A in protocol/gates.md and protocol/checks/gate_a_record_2026-10-18.json (a file cannot contain its own commit's hash).
+Pipeline provenance: fix1 labels sha 7bf5633b...; formal pre-run gate run3 (87 pytest items passed; SHA256SUMS consistent for 39 files; manifest `D:\research\limt-repro\v2_w4w6_policy_20260630_gate\SHA256SUMS`, manifest sha256 7f9193c07e4e2faeab6b5d5d484c4ef25871c8309762366d939a37af143b02e8). The run3 manifest predates the 2026-10-17 checkpoint-selection fix: it pins v2_w4_training.py at 7647b836...; every formal CSI300 run since 2026-10-17 night uses the fixed trainer `D:\research\limt-repro\src\v2_w4_training.py` sha256 a960a9951ab52c5455c15f8e0c5d60a783a6beb4beef5b4003ee578f0c21ee43 (pinned inside every runner in src/; behavioral assertions A-G0-1..4 + A-LBL-1 passed 2026-10-17 and were rerun 14/14 on 2026-10-18). Clean-panel CSI300 identity: composite data_version 3c70f663... (labels 7bf5633b..., panel a25879f4..., splits 0ab69b33...). Execution feed sha256 aff735c3..., benchmark H00300 returns sha256 d6b21b61....
 
 Changes in v0.6: Section 6.2 tau-grid rationale corrected after the seed-1 grid runs (the unit-variance score assumption and the N(0,1)-based N_eff table are wrong for this pipeline; measured training-batch concentration shows all three taus are more diffuse than a 50-name book, so the surrogate gap is a concentration gap; the grid itself is unchanged). Section 8: the seed-1 C-T run is deferred (its penalty magnitude, gamma_to x median turnover = 1.9e-4, equals the fee term already shown near-inert; see protocol/tau_grid_report_2026-10-18.md). Section 8A: an exploratory dose arm (G0 and C0 at alpha_aux = 0.03, tau = 0.5, seed 1) is registered in the Deviation Log before running. Epoch-cap and grid-edge selections of the seed-1 runs are recorded in protocol/tau_grid_report_2026-10-18.md. No thresholds, grids or decision rules changed.
+
+Gate A completion (2026-10-18, same day, after the seed-1 runs — no backdating): all `[FILL]` fields of this file were completed or explicitly marked open (authors' repository backtest config check, Section 11, open item N10; hard write-up date, Section 13); Section 6.5 and its five assertions were ticked on the evidence listed there; sigma_d(prelim) = 6.78% was measured on executed books (Section 4.2). Field completion only — no thresholds, grids or decision rules changed. The five Deviation Log entries dated 2026-10-18 (benchmark reframe with six Qlib-default descriptive arms, stamp-duty sensitivity, TOST margin, rule-selection seeds option (b), diagnostics disclosure) live in protocol/deviation_log.md, committed before any run they cover.
 
 Changes in v0.5: locked decisions S2 (tau grid approved), S3 (L0 = No), S4/D2 (1-day H retrain = No), S8 (bridge ladder = No for main matrix). Updated Section 8, 8A, and Section 17 accordingly. G0 real-fee selection requirement confirmed and retained. No thresholds, grids or decision rules changed.
 
@@ -88,7 +90,7 @@ These assume independent daily differences. Autocorrelation and the block bootst
 ### 4.2 What sigma_d actually is
 5% is an assumption. Two fine-tunes of the same H in the same universe may track each other more closely, or less closely if their tuned rules differ in turnover. It must be measured, not assumed.
 
-- Preliminary estimate (Gate A): validation window 2019-2020 (486 days), using ridge_h5 vs H after-cost daily returns under the default rule. Record sigma_d(prelim) = [FILL].
+- Preliminary estimate (Gate A): validation window 2019-2020 (485 paired days), using ridge_h5 vs H after-cost daily returns under the default rule. Record sigma_d(prelim) = **6.78% annualized** (MDE80 9.0 pp), measured 2026-10-18 on executed books, `protocol/checks/sigma_d_prelim_2026-10-18.json`. Note: this pair is two *different* models (ridge vs H), so it is an upper-bound-style proxy; the confirmatory pair C0 vs G0 consists of twin fine-tunes of the same H and is expected to be far smaller.
 - Final estimate (Gate B, before any 2023+ output is opened): validation-window daily after-cost return difference between seed-1 C0 and seed-1 G0 under the default rule. Record sigma_d(final) = [FILL], MDE80 = 2.487 * sigma_d / sqrt(3.5) = [FILL]. The validation window gives a noisy estimate of sigma_d (roughly +/-15%); the tier below is chosen from the point value and not revisited.
 
 ### 4.3 Mechanical rule (applied at Gate B using sigma_d(final); no discretion)
@@ -144,24 +146,24 @@ Rationale corrected in v0.6. The v0.5 text above derived N_eff from a unit-varia
 - Evaluation end 2026-06-30 (single-stock data cutoff); all 842 required benchmark days present.
 
 ### 6.5 Verify-in-code checklist (tick before commit)
-- [ ] H loss weights 0.65 / 0.30 / 0.05 and MSE on cross-sectionally z-scored targets
-- [ ] Optimizer is Adam in all training scripts
-- [ ] G0 = gross log growth + alpha_aux * h5 loss on a zero-fee ledger, same code path as C0
-- [ ] G0 and C0 use the same selection metric, same epoch cap, same patience, same seeds
-- [ ] H-FT definition (supervised loss only, same epoch cap)
-- [ ] Epoch caps (50 / 20), patience 8 in the committed config files
-- [ ] Capital 1e8, lot 100, fees 5/15 bp, minimum 5 in the committed config files
-- [ ] topk 50 and drop 5 in the TopkDropout config
-- [ ] Delisting dates in the policy file match this document
+- [x] H loss weights 0.65 / 0.30 / 0.05 and MSE on cross-sectionally z-scored targets (v2_w4_training.TASK_WEIGHTS; targets z_h5/z_zv/z_zs)
+- [x] Optimizer is Adam in all training scripts (`train()` uses torch.optim.Adam; formal runners pin trainer sha a960a995...)
+- [x] G0 = gross log growth + alpha_aux * h5 loss on a zero-fee ledger, same code path as C0 (single `train()`; G0 fees (0,0) inside the differentiable ledger)
+- [x] G0 and C0 use the same selection metric, same epoch cap, same patience, same seeds (both select on `validation_real_fee_mean_log` from `monitoring_mean_log` with the real-fee schedule; resolved configs differ only in `training_fee`)
+- [x] H-FT definition (supervised loss only, same epoch cap)
+- [x] Epoch caps (50 / 20), patience 8 in the committed config files (configs/w4w6_formal.json merged over v2_w6_run.DEFAULT)
+- [x] Capital 1e8, lot 100, fees 5/15 bp, minimum 5 in the committed config files
+- [x] topk 50 and drop 5 in the TopkDropout config
+- [x] Delisting dates in the policy file match this document (v2_w6_policy.DELISTINGS: SH600837 2025-03-04, SH601989 2025-09-05)
 
-Status of this checklist: NOT verified. This document cannot confirm any item against the code. The formal config as reported states that H-FT, G0, C0 and C-T all select by validation after-cost mean log growth, which is consistent with the G0 requirement above, but that is a statement about the config and not a code check. Tick an item only after the corresponding assertion below passes.
+Status of this checklist: verified. Ticked 2026-10-18 at Gate A. Evidence: `protocol/checks/verify_in_code_6.5.md` (2026-10-17 source-code check; its A-G0-1..3 "fail" findings describe the code BEFORE the selection-metric fix later that day), `protocol/experiment_report_2026-10-17.md` (post-fix behavioral rerun, 5/5), and a fresh rerun on the current trainer (sha a960a995...) on 2026-10-18: 14/14 passed (`protocol/checks/pytest_gate_a_2026-10-18.txt`). Gate A was completed AFTER the seed-1 runs (H 2026-10-17, tau grid / H-FT / dose arm 2026-10-18); no date in this section is backdated.
 
 Required unit assertions (write before the formal runs; each must fail loudly):
-- [ ] A-G0-1: the G0 training ledger is constructed with fees = 0, and a separate monitoring ledger is constructed with the real-fee schedule (5 bp buy, 15 bp sell, minimum CNY 5, lot 100).
-- [ ] A-G0-2: the checkpoint-selection metric key for G0 and C0 is the same config string and is computed by the same function on the real-fee monitoring ledger.
-- [ ] A-G0-3: on a fixed toy validation panel, the epoch selected for G0 equals the argmax of the real-fee monitoring metric over epochs, not the argmax of the zero-fee metric (use a toy case where the two argmaxes differ).
-- [ ] A-G0-4: G0 and C0 share epoch cap, patience, learning rate, optimizer, seeds, alpha_aux and tau grid; the only differing argument is the training-ledger fee schedule (diff of resolved configs shows exactly that one field).
-- [ ] A-LBL-1: the 1-day and h5 labels in the committed label files match the definitions in Section 8A, with endpoint misalignment = 0 on the two known counterexamples.
+- [x] A-G0-1: the G0 training ledger is constructed with fees = 0, and a separate monitoring ledger is constructed with the real-fee schedule (5 bp buy, 15 bp sell, minimum CNY 5, lot 100). (behavioral, `tests/test_a_g0_a_lbl.py`)
+- [x] A-G0-2: the checkpoint-selection metric key for G0 and C0 is the same config string and is computed by the same function on the real-fee monitoring ledger.
+- [x] A-G0-3: on a fixed toy validation panel, the epoch selected for G0 equals the argmax of the real-fee monitoring metric over epochs, not the argmax of the zero-fee metric (use a toy case where the two argmaxes differ).
+- [x] A-G0-4: G0 and C0 share epoch cap, patience, learning rate, optimizer, seeds, alpha_aux and tau grid; the only differing argument is the training-ledger fee schedule (diff of resolved configs shows exactly that one field).
+- [x] A-LBL-1: the 1-day and h5 labels in the committed label files match the definitions in Section 8A, with endpoint misalignment = 0 on the two known counterexamples (SZ002074 2018-12-26, SH600549 2019-06-26).
 
 ## 7. Go/no-go criteria and scenario mapping
 
@@ -257,7 +259,7 @@ DC1-DC3 and DC5 are not in the Holm family and are described with their interval
 
 - CSI500 must pass the same W1-W2 gates (endpoint misalignment = 0, out-of-bound = 0) before any CSI500 result is used. Until then it is not evidence.
 - CSI500 is confirmatory only.
-- Post-cutoff holdout: data after 2026-06-30. Freeze code, config, hashes and selected rules first. Evaluate once, when at least [FILL, suggest 120] trading days are available. Report whatever results, whatever the sign.
+- Post-cutoff holdout: data after 2026-06-30. Freeze code, config, hashes and selected rules first. Evaluate once, when at least **120** trading days are available. Report whatever results, whatever the sign.
 
 ## 10. Compute plan (from measured timings)
 
@@ -265,13 +267,13 @@ DC1-DC3 and DC5 are not in the Holm family and are described with their interval
 - Epoch caps stay as configured: H 50, fine-tunes 20, patience 8. No caps or grid reductions are imposed before Gate A.
 - Seed-1 CSI300 formal run: H 50 + 4 fine-tunes x 20 = 130 epochs, about 8.1 h worst case (reported; arithmetic at about 224 s/epoch; at the 245 s upper figure the worst case is about 8.9 h). Single-session limit 12 h: fits.
 - Remaining work in epochs (worst case, all epochs run): seeds 2-3 CSI300 H+G0+C0 = 2 x 90 = 180; CSI500 3 seeds = 270; tau-grid extras = 80; total 530 epochs = about 30-36 h, so about 38-44 h including seed 1.
-- Risk to measure before budgeting CSI500: cross-stock attention scales with S^2, so CSI500 epochs may take up to about 2-3 times longer than CSI300 (estimate, not measured). If so, the CSI500 block rises to about 15-21 h and the total toward about 60 h. Measure CSI500 s/epoch on one short run: [FILL].
+- Risk to measure before budgeting CSI500: cross-stock attention scales with S^2, so CSI500 epochs may take up to about 2-3 times longer than CSI300 (estimate, not measured). Measured 2026-10-17 (`protocol/checks/n6_csi500_epoch.json`): one full-universe CSI500 H epoch = 510.4 s on the local RTX 4050 (peak 2,947 MiB; predates the monitoring-ledger edit, so it excludes the two share-ledger replays per epoch now in `train()`).
 - Early stopping with patience 8 should cut the actual figures; record actual epochs used.
-- Kaggle weekly GPU quota: [FILL] h/week. Total GPU-hour budget for the study: [FILL].
+- Kaggle weekly GPU quota: not applicable — all runs execute locally on the RTX 4050 Laptop GPU (6 GB); measured ~1.5-1.6 h per 20-epoch fine-tune including both ledger replays, H seed 1 = 11 epochs (early stop, ~35 min). Total GPU-hour budget for the study: bounded by the stopping rule in Section 13.
 
 ## 11. Relationship to the original LiMT paper (arXiv:2609.25617)
 
-- What the original paper does: MSE on z-scored targets; costs appear only in the APO long-short backtest (10 bp per trade, 2% participation cap, CNY 1e9 per side). The headline top-50 / drop-20 daily-rebalancing table does not state its cost, benchmark or limit/halt handling in the text. [Checked in the paper text on 2026-10-16.] Action: check the authors' public repository configuration for the backtest settings (open/close cost, minimum cost, benchmark): [FILL].
+- What the original paper does: MSE on z-scored targets; costs appear only in the APO long-short backtest (10 bp per trade, 2% participation cap, CNY 1e9 per side). The headline top-50 / drop-20 daily-rebalancing table does not state its cost, benchmark or limit/halt handling in the text. [Checked in the paper text on 2026-10-16.] Action: check the authors' public repository configuration for the backtest settings (open/close cost, minimum cost, benchmark): **NOT CHECKED — recorded as explicitly open at Gate A (open item N10)**. Until it is checked, the settings are treated as unspecified: per the rules below, the paper states which settings are unspecified and reports sensitivity to them (the stamp-duty sensitivity registered in the Deviation Log on 2026-10-18 is one such sensitivity).
 - Its protocol: Alpha158, lookback 21, 1-day label defined as Close(t+2)/Close(t+1) - 1, train 2008-2014, validation 2015-2016, test 2017-2020-08.
 - Rules for our text: we do not claim to have "reproduced" the headline portfolio numbers; we do not describe the original as wrong; we state which settings are unspecified and report sensitivity to them.
 - Bridge analysis (descriptive, not a hypothesis test): **Not run in the main matrix** (decision S8 = No in v0.5). May be considered as future work. If later added, move from the original protocol to ours one change at a time, reporting IC and after-cost excess at each step. The legacy rung is reported only after confirming whether the legacy pipeline carries the label misalignment.
@@ -287,8 +289,8 @@ Decisions deferred until Gate D: headline claim, title, venue and tier, extra ba
 
 ## 13. Stopping rule
 
-- Maximum GPU budget: [FILL] Kaggle sessions / [FILL] hours.
-- Hard date after which the paper is written with whatever has completed: [FILL].
+- Maximum GPU budget: no external session quota applies (local RTX 4050, single GPU; runs are serial). Practical bound: the remaining planned matrix (seeds 2-3, benchmark arms, CSI500, rule grids) at measured timings, roughly 40-60 GPU-hours; anything beyond the planned matrix requires a Deviation Log entry first (Section 14).
+- Hard date after which the paper is written with whatever has completed: **explicitly open at Gate A (2026-10-18)** — a user decision, to be fixed before Gate C; recorded here as open rather than invented.
 - No experiment outside this document is started without a Deviation Log entry made before it runs.
 
 ## 14. Deviation log
