@@ -36,7 +36,12 @@ SEED1_DOSE = RUNS / "csi300_dose003_seed1_20261018"
 def resolve(tag):
     kind, _, seed = tag.rpartition("_seed")
     if kind == "H":
-        return RUNS / f"csi300_H_seed{seed}_20261017" / "H" / f"seed{seed}" / "checkpoint.pt"
+        candidates = sorted(RUNS.glob(f"csi300_H_seed{seed}_*/H/seed{seed}/checkpoint.pt"))
+        if not candidates:
+            raise SystemExit(f"no H seed {seed} checkpoint on disk")
+        if len(candidates) > 1:
+            raise SystemExit(f"ambiguous H seed {seed} checkpoints: {candidates}")
+        return candidates[0]
     if kind == "H-FT":
         return RUNS / f"csi300_HFT_seed{seed}_20261018" / "H-FT" / f"seed{seed}" / "checkpoint.pt"
     if kind in ("G0", "C0"):
