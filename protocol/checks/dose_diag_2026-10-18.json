@@ -4,91 +4,70 @@
  "tau": 0.5,
  "soft_convention": "continuous weights, proportional 5/15 bp, no min fee/lot",
  "topk_convention": "share ledger, topk50 drop5 daily, full frictions",
- "seconds": 81.03656039998168,
+ "seconds": 245.6559965000488,
  "arms": {
-  "C0_seed1": {
-   "arm": "C0",
+  "H_seed1": {
+   "arm": "H",
    "seed": 1,
    "exploratory": false,
    "five_day_ic_valid": {
-    "mean_ic": 0.0547574327117591,
+    "mean_ic": 0.038194589550846106,
     "valid_days": 481,
     "samples": 143494
    },
    "soft_layer_2021_2022": {
-    "annualized_excess_pp": 7.917868990009282,
+    "annualized_excess_pp": 5.667312187298633,
     "n_days": 484,
     "first_date": "2021-01-05",
     "last_date": "2022-12-30"
    },
    "topk_default_2021_2022": {
-    "annualized_excess_pp": 20.394357054708447,
-    "cost_drag_annualized_pp": 5.120785989429138
+    "annualized_excess_pp": 17.915004842659695,
+    "cost_drag_annualized_pp": 5.082215391286865
    },
-   "soft_minus_topk_pp": -12.476488064699167
+   "soft_minus_topk_pp": -12.247692655361059
   },
-  "C0dose003_seed1": {
-   "arm": "C0dose003",
-   "seed": 1,
-   "exploratory": true,
-   "five_day_ic_valid": {
-    "mean_ic": 0.043523969470768406,
-    "valid_days": 481,
-    "samples": 143494
-   },
-   "soft_layer_2021_2022": {
-    "annualized_excess_pp": -12.740882022306673,
-    "n_days": 484,
-    "first_date": "2021-01-05",
-    "last_date": "2022-12-30"
-   },
-   "topk_default_2021_2022": {
-    "annualized_excess_pp": 18.744072620977658,
-    "cost_drag_annualized_pp": 5.116673565054504
-   },
-   "soft_minus_topk_pp": -31.484954643284336
-  },
-  "G0_seed1": {
-   "arm": "G0",
-   "seed": 1,
+  "H_seed2": {
+   "arm": "H",
+   "seed": 2,
    "exploratory": false,
    "five_day_ic_valid": {
-    "mean_ic": 0.054930677862059026,
+    "mean_ic": 0.03721998517767585,
     "valid_days": 481,
     "samples": 143494
    },
    "soft_layer_2021_2022": {
-    "annualized_excess_pp": 7.877614248539625,
+    "annualized_excess_pp": 6.0677751749752495,
     "n_days": 484,
     "first_date": "2021-01-05",
     "last_date": "2022-12-30"
    },
    "topk_default_2021_2022": {
-    "annualized_excess_pp": 20.986854927828812,
-    "cost_drag_annualized_pp": 5.097968907826356
+    "annualized_excess_pp": 17.638947469278314,
+    "cost_drag_annualized_pp": 5.148213356120709
    },
-   "soft_minus_topk_pp": -13.109240679289188
+   "soft_minus_topk_pp": -11.571172294303066
   },
-  "G0dose003_seed1": {
-   "arm": "G0dose003",
-   "seed": 1,
-   "exploratory": true,
+  "H_seed3": {
+   "arm": "H",
+   "seed": 3,
+   "exploratory": false,
    "five_day_ic_valid": {
-    "mean_ic": 0.03955746538771448,
+    "mean_ic": 0.03654389930309512,
     "valid_days": 481,
     "samples": 143494
    },
    "soft_layer_2021_2022": {
-    "annualized_excess_pp": -29.70201272489556,
+    "annualized_excess_pp": 5.8031677258398044,
     "n_days": 484,
     "first_date": "2021-01-05",
     "last_date": "2022-12-30"
    },
    "topk_default_2021_2022": {
-    "annualized_excess_pp": 20.333282911295797,
-    "cost_drag_annualized_pp": 5.14998735493281
+    "annualized_excess_pp": 17.964759422837297,
+    "cost_drag_annualized_pp": 5.167019976733756
    },
-   "soft_minus_topk_pp": -50.03529563619136
+   "soft_minus_topk_pp": -12.161591696997494
   },
   "H-FT_seed1": {
    "arm": "H-FT",
@@ -111,26 +90,215 @@
    },
    "soft_minus_topk_pp": -13.553939064665688
   },
-  "H_seed1": {
-   "arm": "H",
-   "seed": 1,
+  "H-FT_seed2": {
+   "arm": "H-FT",
+   "seed": 2,
    "exploratory": false,
    "five_day_ic_valid": {
-    "mean_ic": 0.038194589550846106,
+    "mean_ic": 0.04904206072762634,
     "valid_days": 481,
     "samples": 143494
    },
    "soft_layer_2021_2022": {
-    "annualized_excess_pp": 5.667312187298633,
+    "annualized_excess_pp": 8.368827950190955,
     "n_days": 484,
     "first_date": "2021-01-05",
     "last_date": "2022-12-30"
    },
    "topk_default_2021_2022": {
-    "annualized_excess_pp": 17.915004842659695,
-    "cost_drag_annualized_pp": 5.082215391286865
+    "annualized_excess_pp": 18.876691896191204,
+    "cost_drag_annualized_pp": 5.144856741815543
    },
-   "soft_minus_topk_pp": -12.247692655361059
+   "soft_minus_topk_pp": -10.507863946000247
+  },
+  "H-FT_seed3": {
+   "arm": "H-FT",
+   "seed": 3,
+   "exploratory": false,
+   "five_day_ic_valid": {
+    "mean_ic": 0.05219290567910015,
+    "valid_days": 481,
+    "samples": 143494
+   },
+   "soft_layer_2021_2022": {
+    "annualized_excess_pp": 8.06751465639189,
+    "n_days": 484,
+    "first_date": "2021-01-05",
+    "last_date": "2022-12-30"
+   },
+   "topk_default_2021_2022": {
+    "annualized_excess_pp": 19.469553542251823,
+    "cost_drag_annualized_pp": 5.1650856102268285
+   },
+   "soft_minus_topk_pp": -11.402038885859934
+  },
+  "G0_seed1": {
+   "arm": "G0",
+   "seed": 1,
+   "exploratory": false,
+   "five_day_ic_valid": {
+    "mean_ic": 0.054930677862059026,
+    "valid_days": 481,
+    "samples": 143494
+   },
+   "soft_layer_2021_2022": {
+    "annualized_excess_pp": 7.877614248539625,
+    "n_days": 484,
+    "first_date": "2021-01-05",
+    "last_date": "2022-12-30"
+   },
+   "topk_default_2021_2022": {
+    "annualized_excess_pp": 20.986854927828812,
+    "cost_drag_annualized_pp": 5.097968907826356
+   },
+   "soft_minus_topk_pp": -13.109240679289188
+  },
+  "G0_seed2": {
+   "arm": "G0",
+   "seed": 2,
+   "exploratory": false,
+   "five_day_ic_valid": {
+    "mean_ic": 0.04838676874819233,
+    "valid_days": 481,
+    "samples": 143494
+   },
+   "soft_layer_2021_2022": {
+    "annualized_excess_pp": 8.584842087292174,
+    "n_days": 484,
+    "first_date": "2021-01-05",
+    "last_date": "2022-12-30"
+   },
+   "topk_default_2021_2022": {
+    "annualized_excess_pp": 20.49703128700321,
+    "cost_drag_annualized_pp": 5.148092060126941
+   },
+   "soft_minus_topk_pp": -11.912189199711035
+  },
+  "G0_seed3": {
+   "arm": "G0",
+   "seed": 3,
+   "exploratory": false,
+   "five_day_ic_valid": {
+    "mean_ic": 0.050943364637520444,
+    "valid_days": 481,
+    "samples": 143494
+   },
+   "soft_layer_2021_2022": {
+    "annualized_excess_pp": 8.253094954393827,
+    "n_days": 484,
+    "first_date": "2021-01-05",
+    "last_date": "2022-12-30"
+   },
+   "topk_default_2021_2022": {
+    "annualized_excess_pp": 20.592762486205558,
+    "cost_drag_annualized_pp": 5.1350118532719575
+   },
+   "soft_minus_topk_pp": -12.339667531811731
+  },
+  "C0_seed1": {
+   "arm": "C0",
+   "seed": 1,
+   "exploratory": false,
+   "five_day_ic_valid": {
+    "mean_ic": 0.0547574327117591,
+    "valid_days": 481,
+    "samples": 143494
+   },
+   "soft_layer_2021_2022": {
+    "annualized_excess_pp": 7.917868990009282,
+    "n_days": 484,
+    "first_date": "2021-01-05",
+    "last_date": "2022-12-30"
+   },
+   "topk_default_2021_2022": {
+    "annualized_excess_pp": 20.394357054708447,
+    "cost_drag_annualized_pp": 5.120785989429138
+   },
+   "soft_minus_topk_pp": -12.476488064699167
+  },
+  "C0_seed2": {
+   "arm": "C0",
+   "seed": 2,
+   "exploratory": false,
+   "five_day_ic_valid": {
+    "mean_ic": 0.04822773905646633,
+    "valid_days": 481,
+    "samples": 143494
+   },
+   "soft_layer_2021_2022": {
+    "annualized_excess_pp": 8.627814796437526,
+    "n_days": 484,
+    "first_date": "2021-01-05",
+    "last_date": "2022-12-30"
+   },
+   "topk_default_2021_2022": {
+    "annualized_excess_pp": 20.002640362729,
+    "cost_drag_annualized_pp": 5.149028302230716
+   },
+   "soft_minus_topk_pp": -11.374825566291474
+  },
+  "C0_seed3": {
+   "arm": "C0",
+   "seed": 3,
+   "exploratory": false,
+   "five_day_ic_valid": {
+    "mean_ic": 0.050881415991890076,
+    "valid_days": 481,
+    "samples": 143494
+   },
+   "soft_layer_2021_2022": {
+    "annualized_excess_pp": 8.309731997445569,
+    "n_days": 484,
+    "first_date": "2021-01-05",
+    "last_date": "2022-12-30"
+   },
+   "topk_default_2021_2022": {
+    "annualized_excess_pp": 20.287587680199152,
+    "cost_drag_annualized_pp": 5.177122892017942
+   },
+   "soft_minus_topk_pp": -11.977855682753583
+  },
+  "G0dose003_seed1": {
+   "arm": "G0dose003",
+   "seed": 1,
+   "exploratory": true,
+   "five_day_ic_valid": {
+    "mean_ic": 0.03955746538771448,
+    "valid_days": 481,
+    "samples": 143494
+   },
+   "soft_layer_2021_2022": {
+    "annualized_excess_pp": -29.70201272489556,
+    "n_days": 484,
+    "first_date": "2021-01-05",
+    "last_date": "2022-12-30"
+   },
+   "topk_default_2021_2022": {
+    "annualized_excess_pp": 20.333282911295797,
+    "cost_drag_annualized_pp": 5.14998735493281
+   },
+   "soft_minus_topk_pp": -50.03529563619136
+  },
+  "C0dose003_seed1": {
+   "arm": "C0dose003",
+   "seed": 1,
+   "exploratory": true,
+   "five_day_ic_valid": {
+    "mean_ic": 0.043523969470768406,
+    "valid_days": 481,
+    "samples": 143494
+   },
+   "soft_layer_2021_2022": {
+    "annualized_excess_pp": -12.740882022306673,
+    "n_days": 484,
+    "first_date": "2021-01-05",
+    "last_date": "2022-12-30"
+   },
+   "topk_default_2021_2022": {
+    "annualized_excess_pp": 18.744072620977658,
+    "cost_drag_annualized_pp": 5.116673565054504
+   },
+   "soft_minus_topk_pp": -31.484954643284336
   }
  }
 }
