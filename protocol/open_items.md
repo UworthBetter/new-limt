@@ -29,3 +29,6 @@ CSI300 CPU 基线已跑完，选择结果在 `runs/csi300_cpu/selection.json`。
 - **探索性剂量臂**（G0/C0 @ α_aux=0.03, τ=0.5, 种子 1）：已在 deviation_log.md 预登记后发射（src/run_dose_seed1.py）。全部结果 exploratory。
 - **N5 在填**：src/score_val_taus.py 把每个 checkpoint 在验证窗 3τ 的 N_eff、单名最大权重、监控账本指标写入 `checks/n5_neff_validation.json`。
 - 实测每跑 20 epoch ≈ 1.5–1.6 小时（含双份份额账本回放）；H-FT ≈1.6h、剂量臂两跑 ≈3.1h。预注册 §10 的 Kaggle T4 数字不适用于本机。
+
+2026-10-18 晚增补：
+- **CSI500 H ×3 seeds 提前到 Kaggle 并行**（调度决定，非偏差：矩阵内工作、§6.2 配置已冻结）。理由：H 纯监督训练不需要 execution feed，也不产生/不读任何 2023+ 输出，不受 Gate 门禁约束；G0/C0 仍等 CSI500 对齐成交账本（本地数据工程）。发射包在 `kaggle_csi500_h/`（README_upload.md 有上传步骤与三项完整性锚：data_version bae7115e…、config hash 393b1993…、trainer sha a960a995…）。

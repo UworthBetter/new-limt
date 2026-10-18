@@ -1,0 +1,21 @@
+{
+  "mode": "formal",
+  "evaluation_end": "2026-06-30",
+  "st_policy": "limits_only",
+  "seeds": [1],
+  "dimension": 256,
+  "lookback": 21,
+  "batch_days": 4,
+  "max_symbols": 0,
+  "train_days": 0,
+  "valid_days": 0,
+  "report_days": 0,
+  "epochs_h": 50,
+  "epochs_finetune": 20,
+  "patience": 8,
+  "device": "cuda",
+  "threads": 8,
+  "amp": false,
+  "gamma_to": 0.001,
+  "rules": ["soft", "topk-reference", "topk-execution"]
+}
