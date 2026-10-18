@@ -11,3 +11,4 @@ logs/**
 !logs/README.md
 *.pt
 *.npz
+venv_bench/
