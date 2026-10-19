@@ -1,0 +1,64 @@
+# Gate B: never let git alter bytes (Claude round 10). Every path in commits D/A/B/B2/C.
+.gitattributes -text
+# commit D
+src/new_run_benchmarks_v2.py -text
+src/new_verify_seeds.py -text
+src/new_bench_dataset.py -text
+src/new_gate_b_common.py -text
+src/new_bench_replay.py -text
+src/new_rule_grid_bench_v2.py -text
+src/new_bench_forensics_v2.py -text
+src/new_gate_b_analysis_v3.py -text
+src/new_gate_b_delivery_audit.py -text
+src/new_label_rank_check.py -text
+src/new_label_rank_check_v2.py -text
+src/new_gate_c_holm.py -text
+configs/new_benchmarks_qlib_defaults_v2.json -text
+configs/new_benchmarks_qlib_defaults_v2.meta.json -text
+configs/new_benchmarks_qlib_defaults_v2_predl3_draft.json -text
+protocol/checks/new_v2_spec_2a65bd42_vs_49010f9b.diff -text
+# commit A
+protocol/new_DL25_analysis_v3_1_2026-10-19.md -text
+protocol/new_DL25_analysis_v3_1_2026-10-19_en.md -text
+protocol/new_DL26_v2_spec_provenance_2026-10-19.md -text
+protocol/new_DL26_v2_spec_provenance_2026-10-19_en.md -text
+protocol/new_DL27_extracted_members_2026-10-19.md -text
+protocol/new_DL28_retrain_eval_policy_2026-10-19.md -text
+protocol/checks/new_allowed_members_sha256_r8.txt -text
+protocol/checks/new_nn_ckpt_SHA256SUMS_20261019.txt -text
+protocol/checks/new_cpu_retrain_inputs_SHA256SUMS_20261019.txt -text
+protocol/checks/new_cpu_retrain_inputs_upload_r12.md -text
+protocol/checks/new_retrain_list_r13.md -text
+src/new_compare_ridge_daily_v1.py -text
+# commit B
+src/new_guarded_data_v1.py -text
+configs/new_guarded_data_v1.sha256 -text
+# commit B2
+src/new_gate_b_analysis_v3_1.py -text
+src/new_bench_eval_v1.py -text
+src/new_unseal_once_v1.py -text
+src/new_model_artifacts_v1.py -text
+src/new_retrain_bench_v1.py -text
+src/new_compare_scores_v1.py -text
+src/new_rule_grid_bench_v2p.py -text
+src/new_bench_forensics_v2p.py -text
+src/new_cpu_reselect_v1.py -text
+src/new_benchmark_manifest_v1.py -text
+src/new_r9_delivery_check.py -text
+tests/new_test_bench_eval_v1.py -text
+tests/new_test_retrain_compare_v1.py -text
+protocol/checks/new_r9_delivery_20261019_release/** -text
+protocol/new_r9_implementation_report.md -text
+protocol/new_DL25_guard_r9_implementation_draft.md -text
+# commit C
+configs/new_benchmarks_h5_v3.json -text
+protocol/new_DL24_h5_benchmarks_2026-10-19.md -text
+protocol/new_DL24_h5_benchmarks_2026-10-19_en.md -text
+src/new_run_benchmarks_h5_v3.py -text
+src/new_h5_common_v3.py -text
+src/new_h5_models_v3.py -text
+src/new_select_h5_config_v3.py -text
+src/new_verify_seeds_h5_v3.py -text
+src/new_rule_grid_bench_h5_v3.py -text
+src/new_bench_forensics_h5_v3.py -text
+tests/new_test_h5_benchmarks.py -text
