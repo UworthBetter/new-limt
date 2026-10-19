@@ -1,0 +1,100 @@
+{
+  "git_head": "b7306e0d4b0d37c8456456264ed8c7a2a9eca10a",
+  "git_dirty": true,
+  "script_sha256": "15e684161e00d39578e71b4ee2d5e7827eb36e73a54f74f4bf6e1122d6f6d8eb",
+  "inputs": {
+    "spec": {
+      "path": "D:\\research\\new_LiMT\\configs\\new_benchmarks_qlib_defaults_v2.json",
+      "sha256": "2a65bd42b7e05c72f7225d21a8fdb2da2f06fcc1974fb49ad873fd78de95f890"
+    },
+    "labels": {
+      "path": "data\\csi300_w1w2\\data\\v2\\new_v2_labels_csi300.npz",
+      "sha256": "7bf5633b7ad9d146e5154a120307d8dbf771a9d5a5c9852f9eb7aba0bd1064a5"
+    },
+    "panel": {
+      "status": "synthetic"
+    },
+    "splits": {
+      "status": "synthetic"
+    },
+    "feed": {
+      "status": "synthetic"
+    },
+    "bench": {
+      "status": "synthetic"
+    }
+  },
+  "dependency_sha256": {
+    "new_bench_dataset.py": "2bd555f8c7052624bcfa43b067f1f81964e8f894c66918531bbd9879e8528616",
+    "new_bench_forensics_v2.py": "6731849040e341b21d6527c05c46961df2240f35b7c246fa4aa7e1632d0bb65b",
+    "new_bench_replay.py": "ba32c089c864a9989cb7f12af8c8ff46c0db0f9c73131c16304f03d5e54406f5",
+    "new_gate_b_analysis_v3.py": "4dc31cd9d0482a749d65180eabb7a3bb37abfa90657b78d3dc6fe5ecd5a24818",
+    "new_gate_b_common.py": "9dc0c71f7311a795fed2312cfeb7ac6b3dfc8c1aa1f6afa8cb7623e3f3d7244c",
+    "new_gate_b_delivery_audit.py": "15e684161e00d39578e71b4ee2d5e7827eb36e73a54f74f4bf6e1122d6f6d8eb",
+    "new_gate_c_holm.py": "4993c4d2fc8d167eefe9db6b6948d699157d78f7a7bbac3b37ea42e3cc3f40a2",
+    "new_label_rank_check.py": "a3a9268088282f1fad3809bf10f19eafd2354ee8e3f984a152a15983a28f2700",
+    "new_rule_grid_bench_v2.py": "1fb9155d25bbe6222abc30cbb955bebe000448359b8ad4a5d096452af4f9c77d",
+    "new_run_benchmarks_v2.py": "dd125bcf3bfbfb0cb065c055430f3acd63ddc00d02905576033636f8c5c2137f",
+    "new_verify_seeds.py": "919eb74116d79cda3cab123323ff03bfc63d72907e0cc10b84eebe541a283cf8"
+  },
+  "spec_sha256": "2a65bd42b7e05c72f7225d21a8fdb2da2f06fcc1974fb49ad873fd78de95f890",
+  "versions": {
+    "python": "3.13.9",
+    "pyqlib": "0.9.6",
+    "numpy": "2.4.1",
+    "pandas": "2.3.3",
+    "torch": "2.7.1+cu118",
+    "xgboost": "3.4.1"
+  },
+  "cuda": "11.8",
+  "hip": null,
+  "hostname": "LAPTOP-O1OVIMBD",
+  "os": "Windows-11-10.0.26200-SP0",
+  "cpu": "AMD Ryzen 7 7735H with Radeon Graphics",
+  "cpu_logical_cores": 16,
+  "memory_bytes": 16366567424,
+  "gpus": [
+    {
+      "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "memory_bytes": 6438780928
+    }
+  ],
+  "cpu_physical_cores": 8,
+  "cpu_affinity_cores": null,
+  "torch_num_threads": 2,
+  "omp_num_threads": "2",
+  "miopen_user_db_path": null,
+  "started_at": "2026-10-19T09:42:55.256864+00:00",
+  "ended_at": "2026-10-19T09:43:37.104335+00:00",
+  "argv": [
+    "src/new_gate_b_delivery_audit.py",
+    "--root",
+    ".",
+    "--limt-src",
+    "../limt-repro/src",
+    "--labels",
+    "data/csi300_w1w2/data/v2/new_v2_labels_csi300.npz",
+    "--protected-before",
+    "protocol/checks/new_protected_before_final_audit_2026-10-19.json",
+    "--seed-report",
+    "protocol/checks/new_seed_verification_2026-10-19_delivery_final.json",
+    "--xgb-smoke-meta",
+    "runs/new_smoke_xgb_final_20261019/XGBoost-seeded_seed2.meta.json",
+    "--nn-smoke-meta",
+    "runs/new_smoke_lstm_20261019/LSTM-csrank_seed1.meta.json",
+    "--nn-snapshot-seed-report",
+    "protocol/checks/new_seed_verification_2026-10-19.json",
+    "--rank-report",
+    "protocol/checks/new_label_rank_precision_2026-10-19.json",
+    "--out-dir",
+    "protocol/checks/new_gate_b_delivery_2026-10-19",
+    "--threads",
+    "2"
+  ],
+  "wall_seconds": 41.76913739996962,
+  "device_hours": 0.011602538166658228,
+  "synthetic": true,
+  "xgb_actual_nthread": null,
+  "artifact_sha256": "2a65bd42b7e05c72f7225d21a8fdb2da2f06fcc1974fb49ad873fd78de95f890",
+  "status": "DL-3 draft"
+}

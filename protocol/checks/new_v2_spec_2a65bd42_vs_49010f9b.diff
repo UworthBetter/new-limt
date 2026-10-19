@@ -1,0 +1,11 @@
+--- new_benchmarks_qlib_defaults_v2_2a65bd42_recovered.json	2026-10-19 07:49:04.799358144 -0700
++++ /workspace/new_limt_gateb_code_20261019_0450/configs/new_benchmarks_qlib_defaults_v2.json	2026-10-19 04:53:37.511765092 -0700
+@@ -201,7 +201,7 @@
+   },
+   "step_len_ts": 20,
+   "reported_edge_caution": "Qlib's published benchmark numbers use train 2008-2014 / valid 2015-2016 / test 2017-2020-08 and the qlib data handler; any comparison to published IC/excess must state the different windows and pipeline (this study: clean panel, train 2008-2018, valid 2019-2020, rule selection 2021-2022).",
+-  "status": "DRAFT: DL-3 pending; not frozen or approved for production",
++  "status": "FROZEN: DL-3 approved by user",
+   "spec_supersedes": [
+     "da5b742579bf8c5a15e049ec03dd59e0ba6f39da59bd6582b1e338b5a883ecff",
+     "e189f6cbe3453d172fc407b6bf2117be15bcba7c72c698f53f125d92533e5165"

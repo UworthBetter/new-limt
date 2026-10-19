@@ -1,0 +1,210 @@
+{
+  "provenance": {
+    "source": "microsoft/qlib GitHub tag v0.9.6, examples/benchmarks/<MODEL>/workflow_config_<model>_Alpha158.yaml",
+    "fetched": "2026-10-18",
+    "note": "Pinned qlib v0.9.6 model kwargs; explicit model seeds and corrected label processing. No tuning."
+  },
+  "data_convention": {
+    "features": "clean CSI300 panel (Alpha158 columns) as consumed by every arm. Per-model feature sets follow the official v0.9.6 yamls: LSTM/GRU/ALSTM/Transformer configs specify FilterCol col_list (20 columns, verbatim below); XGBoost and DoubleEnsemble configs specify NO FilterCol and therefore use the full 158-column Alpha158 handler. No extra infer processors (the clean panel is already the W1-verified processed input: RobustZScoreNorm fit 2008-01-01..train_end, fillna(0)).",
+    "label": "NN: CSRankNorm over label_mask_r1 per date, (rank(pct=True)-0.5)*3.46. XGB/DE: CSZScoreNorm = z_r1.",
+    "segments": {
+      "train": [
+        "2008-01-01",
+        "2018-12-31"
+      ],
+      "valid": [
+        "2019-01-01",
+        "2020-12-31"
+      ]
+    },
+    "seed_policy": "Explicit model seeds 1,2,3. Existing effective-seed-0 XGB/Transformer artefacts remain descriptive."
+  },
+  "feature_sets": {
+    "filter20_models": [
+      "LSTM",
+      "GRU",
+      "ALSTM",
+      "Transformer"
+    ],
+    "all158_models": [
+      "XGBoost",
+      "DoubleEnsemble"
+    ]
+  },
+  "filter_col_20": [
+    "RESI5",
+    "WVMA5",
+    "RSQR5",
+    "KLEN",
+    "RSQR10",
+    "CORR5",
+    "CORD5",
+    "CORR10",
+    "ROC60",
+    "RESI10",
+    "VSTD5",
+    "RSQR60",
+    "CORR60",
+    "WVMA60",
+    "STD5",
+    "RSQR20",
+    "CORD60",
+    "CORD10",
+    "CORR20",
+    "KLOW"
+  ],
+  "models": {
+    "LSTM": {
+      "module": "qlib.contrib.model.pytorch_lstm_ts",
+      "class": "LSTM",
+      "kwargs": {
+        "d_feat": 20,
+        "hidden_size": 64,
+        "num_layers": 2,
+        "dropout": 0.0,
+        "n_epochs": 200,
+        "lr": 0.001,
+        "early_stop": 10,
+        "batch_size": 800,
+        "metric": "loss",
+        "loss": "mse",
+        "n_jobs": 20,
+        "GPU": 0,
+        "seed": 1
+      },
+      "label_processor": "csrank",
+      "feature_processing_official": "RobustZScoreNorm fit on official training window; clip +/-3; Fillna 0; model-specific FilterCol",
+      "feature_processing_ours": "RobustZScoreNorm fit 2008-2018; clip +/-3; Fillna 0; VWAP0 set to 0; model-specific FilterCol",
+      "seed_policy": "Explicit model seeds 1,2,3. Existing effective-seed-0 XGB/Transformer artefacts remain descriptive."
+    },
+    "GRU": {
+      "module": "qlib.contrib.model.pytorch_gru_ts",
+      "class": "GRU",
+      "kwargs": {
+        "d_feat": 20,
+        "hidden_size": 64,
+        "num_layers": 2,
+        "dropout": 0.0,
+        "n_epochs": 200,
+        "lr": 0.0002,
+        "early_stop": 10,
+        "batch_size": 800,
+        "metric": "loss",
+        "loss": "mse",
+        "n_jobs": 20,
+        "GPU": 0,
+        "seed": 1
+      },
+      "label_processor": "csrank",
+      "feature_processing_official": "RobustZScoreNorm fit on official training window; clip +/-3; Fillna 0; model-specific FilterCol",
+      "feature_processing_ours": "RobustZScoreNorm fit 2008-2018; clip +/-3; Fillna 0; VWAP0 set to 0; model-specific FilterCol",
+      "seed_policy": "Explicit model seeds 1,2,3. Existing effective-seed-0 XGB/Transformer artefacts remain descriptive."
+    },
+    "ALSTM": {
+      "module": "qlib.contrib.model.pytorch_alstm_ts",
+      "class": "ALSTM",
+      "kwargs": {
+        "d_feat": 20,
+        "hidden_size": 64,
+        "num_layers": 2,
+        "dropout": 0.0,
+        "n_epochs": 200,
+        "lr": 0.001,
+        "early_stop": 10,
+        "batch_size": 800,
+        "metric": "loss",
+        "loss": "mse",
+        "n_jobs": 20,
+        "GPU": 0,
+        "rnn_type": "GRU",
+        "seed": 1
+      },
+      "label_processor": "csrank",
+      "feature_processing_official": "RobustZScoreNorm fit on official training window; clip +/-3; Fillna 0; model-specific FilterCol",
+      "feature_processing_ours": "RobustZScoreNorm fit 2008-2018; clip +/-3; Fillna 0; VWAP0 set to 0; model-specific FilterCol",
+      "seed_policy": "Explicit model seeds 1,2,3. Existing effective-seed-0 XGB/Transformer artefacts remain descriptive."
+    },
+    "Transformer": {
+      "module": "qlib.contrib.model.pytorch_transformer_ts",
+      "class": "TransformerModel",
+      "kwargs": {
+        "seed": 1,
+        "n_jobs": 20
+      },
+      "note": "all other hyperparameters = class defaults of qlib v0.9.6 pytorch_transformer_ts.TransformerModel",
+      "label_processor": "csrank",
+      "feature_processing_official": "RobustZScoreNorm fit on official training window; clip +/-3; Fillna 0; model-specific FilterCol",
+      "feature_processing_ours": "RobustZScoreNorm fit 2008-2018; clip +/-3; Fillna 0; VWAP0 set to 0; model-specific FilterCol",
+      "seed_policy": "Explicit model seeds 1,2,3. Existing effective-seed-0 XGB/Transformer artefacts remain descriptive."
+    },
+    "XGBoost": {
+      "module": "qlib.contrib.model.xgboost",
+      "class": "XGBModel",
+      "kwargs": {
+        "eval_metric": "rmse",
+        "colsample_bytree": 0.8879,
+        "eta": 0.0421,
+        "max_depth": 8,
+        "n_estimators": 647,
+        "subsample": 0.8789,
+        "nthread": 20,
+        "seed": 1
+      },
+      "label_processor": "cszscore=z_r1",
+      "feature_processing_official": "RobustZScoreNorm fit on official training window; clip +/-3; Fillna 0; model-specific FilterCol",
+      "feature_processing_ours": "RobustZScoreNorm fit 2008-2018; clip +/-3; Fillna 0; VWAP0 set to 0; model-specific FilterCol",
+      "seed_policy": "Explicit model seeds 1,2,3. Existing effective-seed-0 XGB/Transformer artefacts remain descriptive."
+    },
+    "DoubleEnsemble": {
+      "module": "qlib.contrib.model.double_ensemble",
+      "class": "DEnsembleModel",
+      "kwargs": {
+        "base_model": "gbm",
+        "loss": "mse",
+        "num_models": 3,
+        "enable_sr": true,
+        "enable_fs": true,
+        "alpha1": 1,
+        "alpha2": 1,
+        "bins_sr": 10,
+        "bins_fs": 5,
+        "decay": 0.5,
+        "sample_ratios": [
+          0.8,
+          0.7,
+          0.6,
+          0.5,
+          0.4
+        ],
+        "sub_weights": [
+          1,
+          1,
+          1
+        ],
+        "epochs": 28,
+        "colsample_bytree": 0.8879,
+        "learning_rate": 0.2,
+        "subsample": 0.8789,
+        "lambda_l1": 205.6999,
+        "lambda_l2": 580.9768,
+        "max_depth": 8,
+        "num_leaves": 210,
+        "num_threads": 20,
+        "verbosity": -1,
+        "seed": 1
+      },
+      "label_processor": "cszscore=z_r1",
+      "feature_processing_official": "RobustZScoreNorm fit on official training window; clip +/-3; Fillna 0; model-specific FilterCol",
+      "feature_processing_ours": "RobustZScoreNorm fit 2008-2018; clip +/-3; Fillna 0; VWAP0 set to 0; model-specific FilterCol",
+      "seed_policy": "Explicit model seeds 1,2,3. Existing effective-seed-0 XGB/Transformer artefacts remain descriptive."
+    }
+  },
+  "step_len_ts": 20,
+  "reported_edge_caution": "Qlib's published benchmark numbers use train 2008-2014 / valid 2015-2016 / test 2017-2020-08 and the qlib data handler; any comparison to published IC/excess must state the different windows and pipeline (this study: clean panel, train 2008-2018, valid 2019-2020, rule selection 2021-2022).",
+  "status": "DRAFT: DL-3 pending; not frozen or approved for production",
+  "spec_supersedes": [
+    "da5b742579bf8c5a15e049ec03dd59e0ba6f39da59bd6582b1e338b5a883ecff",
+    "e189f6cbe3453d172fc407b6bf2117be15bcba7c72c698f53f125d92533e5165"
+  ],
+  "benchmark_note": "Different train/valid windows and processed features from official published benchmarks; no direct published-performance equivalence."
+}
