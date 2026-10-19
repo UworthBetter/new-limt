@@ -138,7 +138,7 @@ The **frozen analysis code** is committed at `src/gate_b_analysis.py`, sha256 `5
                      "lgbm-reg_h5": "drop10-every5d", "lgbm-reg_r1": "drop5-every1d",
                      "lgbm-rank_h5": "drop2-every1d", "lgbm-rank_r1": "drop5-every5d"},
   "default_rule": "drop5-every1d (topk 50, drop 5, daily) — also the selected rule of both primary arms",
-  "benchmark_rules": {"<filled from the 3-seed selection once seeds 2-3 land>": "..."},
+  "benchmark_rules": {"LSTM": "drop5-every1d", "GRU": "drop5-every5d", "ALSTM": "drop10-every1d", "DoubleEnsemble": "drop5-every1d", "Transformer": "drop5-every5d", "XGBoost": "drop10-every5d"},
   "seeds": {"neural": [1, 2, 3], "cpu_lgbm": [1, 2, 3], "ridge": [1],
             "benchmarks_stochastic": [1, 2, 3],
             "benchmarks_deterministic": {"XGBoost": 0, "Transformer": 0},
