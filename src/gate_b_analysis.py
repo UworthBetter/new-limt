@@ -138,6 +138,24 @@ def tost(ci90, margin_pp=TOST_MARGIN_PP):
                 equivalent=bool(ci90[0] > -margin_pp and ci90[1] < margin_pp))
 
 
+def conclusion(lower5_pp, ci90_pp, tost_result):
+    """Four-way reading of Delta (per the external review's decision table).
+
+    superior: one-sided 5% lower bound > 0 (TOST may simultaneously hold; the
+    efficacy direction takes precedence and both flags are reported).
+    inferior: the 90% CI lies entirely below 0.
+    equivalent: TOST passes and the result is not superior.
+    uncertain: everything else.
+    """
+    superior = bool(lower5_pp > 0)
+    inferior = bool(ci90_pp[1] < 0)
+    equivalent = bool(tost_result["equivalent"] and not superior)
+    verdict = "superior" if superior else ("inferior" if inferior else ("equivalent" if equivalent else "uncertain"))
+    return dict(verdict=verdict, flags=dict(superior=superior, inferior=inferior,
+                                            tost_equivalent=tost_result["equivalent"]),
+                precedence="efficacy direction outranks equivalence; co-occurrence reported via flags")
+
+
 def holm(pvals):
     order = sorted(range(len(pvals)), key=lambda i: pvals[i])
     m = len(pvals)
@@ -247,16 +265,35 @@ def rows_to_series(rows, bench_values):
     return net, fee, excess
 
 
-def eval_ic(data, days, scores):
+def eval_ic(data, days, scores, split="eval"):
+    """Native-label IC over the split's LOSS mask.
+
+    The loss mask is essential: it is narrowed in Data.__init__ so that a
+    label's exit index stays inside the split -- without it the h5 exit of the
+    last four eval signal days would read prices past 2026-06-30.
+    """
     listed = listing_eligible(data.dates, data.symbols)
     values = []
     for i, t in enumerate(days):
-        keep = data.candidate(t) & listed[t] & np.isfinite(scores[i]) & np.isfinite(data.targets[t, :, 0])
+        keep = data.loss_masks[split][t] & data.candidate(t) & listed[t] \
+            & np.isfinite(scores[i]) & np.isfinite(data.targets[t, :, 0])
         if keep.sum() > 3:
             x, y = scores[i][keep], data.targets[t, keep, 0]
             if x.std() > 0 and y.std() > 0:
                 values.append(float(np.corrcoef(x, y)[0, 1]))
     return float(np.mean(values)) if values else None
+
+
+def sc5_pvalue(paired_series, n_boot=N_BOOT, seed=RNG_SEED, block_mean=BLOCK_MEAN):
+    """Two-sided stationary-bootstrap p for the soft-vs-executed Spearman
+    correlation, computed on the seed-averaged paired daily series. The C0 arm
+    is the pre-specified member of the Holm family; both arms are reported."""
+    x, y = np.asarray(paired_series[0], float), np.asarray(paired_series[1], float)
+    observed = spearman(x, y)
+    idx = bootstrap_indices(len(x), block_mean, n_boot, seed)
+    cors = np.array([spearman(x[row], y[row]) for row in idx])
+    p = 2.0 * min(float((cors <= 0).mean()), float((cors >= 0).mean()))
+    return dict(observed=observed, p_two_sided=min(p, 1.0))
 
 
 def run(args):
@@ -298,6 +335,8 @@ def run(args):
             gross=(c_net + c_fee) - (g_net + g_fee),
             drag=c_fee - g_fee,
             soft_delta=(c_soft_ex - g_soft_ex)[keep],
+            pair_soft_c=c_soft_ex[keep], pair_exec_c=c_ex[keep],
+            pair_soft_g=g_soft_ex[keep], pair_exec_g=g_ex[keep],
             ir_delta=ir(c_soft_ex[keep]) - ir(g_soft_ex[keep]),
             layer_corr_c0=spearman(c_soft_ex[keep], c_ex[keep]),
             layer_corr_g0=spearman(g_soft_ex[keep], g_ex[keep]),
@@ -322,10 +361,16 @@ def run(args):
     sc7g = infer(gross_series)
     ic_c0 = float(np.mean([per_seed[s]["ic_c0"] for s in SEEDS]))
     ic_g0 = float(np.mean([per_seed[s]["ic_g0"] for s in SEEDS]))
+    # SC5 Holm member (pre-specified): the C0 arm's cross-layer correlation,
+    # bootstrap p on the seed-averaged paired daily series; both arms reported.
+    sc5_test = sc5_pvalue((np.mean([per_seed[s]["pair_soft_c"] for s in SEEDS], axis=0),
+                           np.mean([per_seed[s]["pair_exec_c"] for s in SEEDS], axis=0)))
     pvals = [sc1["p_one_sided_pos"], np.nan,
-             2 * min(1 - abs(np.mean([per_seed[s]["layer_corr_c0"] for s in SEEDS])), 1),
+             sc5_test["p_two_sided"],
              sc6["p_one_sided_pos"], sc7g["p_one_sided_pos"]]
     result = dict(primary=primary_out, tost=tost(primary_out["ci90_pp"]),
+                  conclusion=conclusion(primary_out["lower5_pp"], primary_out["ci90_pp"],
+                                        tost(primary_out["ci90_pp"])),
                   newey_west=newey_west(primary_series),
                   per_seed={str(s): dict(delta_pp=float(per_seed[s]["delta"].mean() * 252 * 100),
                                          ir_delta=per_seed[s]["ir_delta"],
@@ -340,7 +385,9 @@ def run(args):
                       SC2_ir_delta_per_seed=[per_seed[s]["ir_delta"] for s in SEEDS],
                       SC2_ir_delta_mean=float(np.mean([per_seed[s]["ir_delta"] for s in SEEDS])),
                       SC5_layer_corr=dict(c0=[per_seed[s]["layer_corr_c0"] for s in SEEDS],
-                                          g0=[per_seed[s]["layer_corr_g0"] for s in SEEDS]),
+                                          g0=[per_seed[s]["layer_corr_g0"] for s in SEEDS],
+                                          holm_member="C0 arm, bootstrap p below"),
+                      SC5_p=sc5_test,
                       SC6_delta_cost_pp=sc6["mean"] * 252 * 100,
                       SC6_ci90_pp=[v * 252 * 100 for v in sc6["ci90"]],
                       SC7_delta_gross_pp=sc7g["mean"] * 252 * 100,
@@ -378,6 +425,18 @@ def self_test():
     assert m["S1_1_delta_ge_2pp"] and m["S1_1_lower_bound_pos"] and m["S1_2_3of3_seeds_positive"] and m["S1_3_ic_within_5pct"]
     m2 = s_mapping(2.5, -0.4, [True, True, False], 0.90)
     assert not m2["S1_1_lower_bound_pos"] and not m2["S1_2_3of3_seeds_positive"] and not m2["S1_3_ic_within_5pct"]
+    # conclusion table: precedence and the four outcomes
+    t_ok = {"equivalent": True}
+    assert conclusion(0.4, [-0.5, 1.0], t_ok)["verdict"] == "superior"
+    assert conclusion(0.4, [-0.5, 1.0], t_ok)["flags"]["tost_equivalent"]  # co-occurrence reported
+    assert conclusion(-0.4, [-1.5, -0.2], t_ok)["verdict"] == "inferior"
+    assert conclusion(-0.4, [-1.0, 0.5], t_ok)["verdict"] == "equivalent"
+    assert conclusion(-0.4, [-1.5, 3.0], {"equivalent": False})["verdict"] == "uncertain"
+    # SC5 bootstrap p: identical series -> corr 1 everywhere -> p 0; noise -> large p
+    x = rng.normal(0, 0.01, 300)
+    assert sc5_pvalue((x, x), n_boot=200)["p_two_sided"] < 1e-6
+    y1, y2 = rng.normal(0, 0.01, 300), rng.normal(0, 0.01, 300)
+    assert sc5_pvalue((y1, y2), n_boot=200)["p_two_sided"] > 0.1
     # paired bootstrap: identical series -> zero IR difference in every replicate
     x = rng.normal(0.001, 0.01, 200)
     vals = paired_apply(x, x, lambda a, b: ir(a) - ir(b), n_boot=200)

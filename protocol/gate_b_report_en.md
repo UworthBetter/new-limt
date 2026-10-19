@@ -109,12 +109,12 @@ All three pass the anchors: data_version `bae7115e…` (identical across seeds a
 
 ## 12. gate_b.json draft (to be written only after final review)
 
-The **frozen analysis code** is committed at `src/gate_b_analysis.py`, sha256 `5742585a…` (commit `4f60ef4`), with a passing synthetic self-test; it computes Delta, the stationary bootstrap (block 10 / 10,000 resamples / rng seed 20261019 / one-sided 5%), TOST (2.0 pp, 90% CI), Newey-West (lag 5), SC1/SC2/SC5/SC6/SC7, Holm over SC1/SC5/SC6/SC7 (SC2 is a ratio reported per-seed; SC4 enters at Gate C), the S1-condition table, and the stamp-duty sensitivity via a date-dependent sell fee whose replay is diagonal-verified against the production replay. The script refuses to run unless gate_b.json records its own sha256.
+The **frozen analysis code** is committed at `src/gate_b_analysis.py` (revision 2 after the review's verification round), sha256 `7d90d218…`, self-test passing; it computes Delta, the stationary bootstrap (block 10 / 10,000 resamples / rng seed 20261019 / one-sided 5%), TOST (2.0 pp, 90% CI), Newey-West (lag 5), SC1/SC2/SC5/SC6/SC7, Holm over SC1/SC5/SC6/SC7 (SC2 is a ratio reported per-seed; SC4 enters at Gate C), the S1-condition table, and the stamp-duty sensitivity via a date-dependent sell fee whose replay is diagonal-verified against the production replay. The script refuses to run unless gate_b.json records its own sha256.
 
 ```json
 {
   "unseal_scope": "CSI300 only; CSI500 evaluation outputs stay sealed until CSI500 G0/C0 exist and their rules are selected on 2021-2022",
-  "analysis_sha256": "5742585ac41a9a291b0eaefed0086cc337220ad9cdf73aee290f16d3430325b6",
+  "analysis_sha256": "7d90d218e661a242512e542e309ea49e4858c428da6f2ea85018ef22e6db64fa",
   "config_hashes": {
     "neural_formal": "393b1993...", "trainer": "a960a995...", "data_version_csi300": "3c70f663...",
     "execution_feed_resset": "aff735c3...", "benchmark_h00300": "d6b21b61...",
