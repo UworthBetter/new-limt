@@ -16,7 +16,7 @@ Workspace: `D:\research\new_LiMT`. Governing protocol: `PREREGISTRATION_v0.6.md`
 ## 2. Protocol integrity
 
 - The Deviation Log entries (benchmark reframe with six Qlib-default arms; stamp-duty sensitivity with sell fee 10 bp from 2023-08-28, HKEX circular CT/137/23, primary schedule unchanged at buy 5 / sell 15 bp with CNY 5 minimum; TOST equivalence margin ±2.0 pp/yr on the same stationary bootstrap; rule-selection seeds option (b); diagnostics and code disclosures) were committed before any run they cover. Commit chain: baseline `8a7a4c45` → deviation log `c8c6c27` → Gate A fills `841f00be` → record `8820fa5`; subsequent runner and fix commits continue the chain.
-- Gate A was completed explicitly **after** the seed-1 runs, with no backdating: all `[FILL]` fields of the preregistration were filled or explicitly marked open (authors' repository backtest configuration check treated as unspecified with sensitivity reported; hard write-up date left as a user decision). The Section 6.5 checklist and the five behavioral assertions (A-G0-1..4, A-LBL-1) were ticked on the current trainer, sha256 `a960a995…`, with a fresh 14/14 rerun recorded in `protocol/checks/pytest_gate_a_2026-10-18.txt`.
+- Gate A was completed explicitly **after** the seed-1 runs, with no backdating: all `[FILL]` fields of the preregistration were filled or explicitly marked open (authors' repository backtest configuration check treated as unspecified with sensitivity reported; hard write-up date left as a user decision). The Section 6.5 checklist and the five behavioral assertions (A-G0-1..4, A-LBL-1) were ticked on the trainer in force, sha256 `a960a995…`, with a 14/14 rerun recorded under `protocol/checks/`.
 - sigma_d(prelim) = 6.78% (ridge_h5 vs H on executed books — an upper-bound-style proxy, since the pair consists of two different models; recorded as such).
 - Integrity guard for every selection-window computation: signal days stop at split-last-minus-2, so the terminal accounting mark lands on 2022-12-30 and the last execution fill on 2022-12-29; both are asserted in every runner log, and no price dated after 2022-12-31 is read.
 
@@ -72,7 +72,7 @@ Declarations carried with these arms: MASTER is not included because no Qlib-con
 
 ## 7. Dose-arm diagnostics (validation 5-day IC; soft vs top-k on 2021–2022)
 
-- 5-day IC (validation, h5 label): H 0.0382; H-FT 0.0556; G0 0.0549; C0 0.0548; G0dose003 0.0396; C0dose003 0.0435 (three-seed values in `protocol/checks/dose_diag_2026-10-18.json`).
+- 5-day IC (validation, h5 label): H 0.0382; H-FT 0.0556; G0 0.0549; C0 0.0548; G0dose003 0.0396; C0dose003 0.0435 (three-seed values in the dose-diagnostics record under `protocol/checks/`).
 - Soft layer vs executed top-k (2021–2022, default rule): regular arms soft − topk ≈ −12 to −13 pp/yr; the concentrated dose books collapse at the soft layer (G0dose003 −29.7 pp/yr soft vs +20.3 pp/yr top-k; gap −50 pp). The concentration explosion is fatal before lot-level frictions even enter.
 - At the executed default rule on 2021–2022, C0 − G0 (seed 1) = −0.59 pp (selection-window diagnostic, not the estimand).
 
@@ -99,12 +99,12 @@ Integrity: data_version `bae7115e…` (identical across the three seeds and matc
 
 | Artefact | Contents |
 |---|---|
-| `protocol/gate_b_ready_2026-10-19.md` | Readiness checklist with full numeric detail (Chinese) |
-| `protocol/checks/sigma_d_prelim_2026-10-18.json`, `sigma_d_final_2026-10-18.json` | Power inputs and diagnostics |
+| `protocol/gate_b_ready_*.md` | Readiness checklist with full numeric detail (Chinese) |
+| `protocol/checks/sigma_d_prelim_*.json`, `sigma_d_final_*.json` | Power inputs and diagnostics |
 | `runs/csi300_neural_selection.json` | 14 per-seed grids + seed-averaged selections (h5 arms) |
 | `runs/csi300_bench_selection.json` | Six benchmark grids + selections (r1 arms) |
-| `runs/csi300/<arm>/h5|r1/<rule>/seedN/daily.csv` | Readable selection-window daily books, all arms |
+| `runs/csi300/<arm>/h5\|r1/<rule>/seedN/daily.csv` | Readable selection-window daily books, all arms |
 | `runs/scores/*.npz` + `.meta.json` | Pinned score artefacts (checkpoint sha per tag) |
-| `protocol/checks/dose_diag_2026-10-18.json` | Full dose diagnostics, 14 tags |
+| `protocol/checks/dose_diag_*.json` | Full dose diagnostics, 14 tags |
 | `runs/csi500_H_kaggle/` | CSI500 H checkpoints, histories, manifests (verified) |
 | `configs/benchmarks_qlib_defaults_v1.json` | Pinned Qlib-default benchmark specification |
