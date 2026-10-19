@@ -1,0 +1,381 @@
+{
+  "status": "FROZEN: DL-24 approved by beelingz 2026-10-19 09:38 PDT",
+  "r1_meta_sha256": {
+    "LSTM-csrank_seed1.meta.json": "6cb3de81d6ff8330277906214b4e883d407bbf0353f5dbc506ebf4d483c9bbbb",
+    "LSTM-csrank_seed2.meta.json": "78ef36f72d8f9dd61c3aba20388500998aaec703fd614549146f54fe90969b42",
+    "LSTM-csrank_seed3.meta.json": "40dd5d09019db1411760653bda52f6459012c4a0a6b06f926a334b4858eac44e",
+    "Transformer-csrank_seed1.meta.json": "316092dd7cb37c713ebc2b78a63cdf1fb19cac988971cadddba01340e38343b0",
+    "Transformer-csrank_seed2.meta.json": "c7550e9952b0209e440c6fa144e2dd2c3f688a51ad943890a59bd5bd2da8387d",
+    "Transformer-csrank_seed3.meta.json": "ab9c75b15657f145422bb198192947882b3a3ce5ef55ef029e3c01013ef10259"
+  },
+  "provenance": {
+    "derived_from": {
+      "path": "configs/new_benchmarks_qlib_defaults_v2.json",
+      "sha256": "49010f9b891316468a4c48fef1a5078a850deb38f571e8ac8e3be751e1f41f90",
+      "note": "v2 is NOT modified. models.LSTM and models.Transformer entries copied verbatim below (official_entry_v2)."
+    },
+    "qlib_source_checked": {
+      "tag": "microsoft/qlib v0.9.6",
+      "fetched": "2026-10-19 via raw.githubusercontent.com",
+      "qlib/contrib/model/pytorch_lstm_ts.py": "4496a8bd0f2b8812523676f17bf50fdf18268ab66a5869e8f9b44c5cb4b4e230",
+      "qlib/contrib/model/pytorch_transformer_ts.py": "053bed36b9d712275fd1cd4735cc897a0adde196e2646f83b7773257d040d79f",
+      "examples/benchmarks/LSTM/workflow_config_lstm_Alpha158.yaml": "718d6c22119965f74d6a4418deee41ee78f476f8caba0dccf9ab9a12e62ff7dd",
+      "examples/benchmarks/Transformer/workflow_config_transformer_Alpha158.yaml": "fe7c120d1574ee643dd38eca0062d45b5790792ea71f6524429908bc35287f69",
+      "transformer_class_defaults_v0.9.6": {
+        "d_feat": 20,
+        "d_model": 64,
+        "batch_size": 8192,
+        "nhead": 2,
+        "num_layers": 2,
+        "dropout": 0,
+        "n_epochs": 100,
+        "lr": 0.0001,
+        "metric": "",
+        "early_stop": 5,
+        "loss": "mse",
+        "optimizer": "adam",
+        "reg": 0.001,
+        "n_jobs": 10,
+        "GPU": 0,
+        "seed": null,
+        "source_lines": "pytorch_transformer_ts.py:26-43"
+      },
+      "lstm_yaml_kwargs": "workflow_config_lstm_Alpha158.yaml task.model.kwargs = v2 models.LSTM.kwargs minus seed",
+      "transformer_yaml_kwargs": {
+        "seed": 0,
+        "n_jobs": 20
+      }
+    },
+    "decision": "PI beelingz, 2026-10-19 07:28 PDT (DL-24); design per Claude h5 plan (/workspace/uploads/claude_h5_plan_reply.md)",
+    "rulings": "Claude round 7 (/workspace/uploads/claude_round7_reply.md), 2026-10-19: purge on; reuse duplicates (24 runs, 22 if cfg1 wins); selection by restored-checkpoint valid IC with bias disclosure; GPU-h = instance wall clock",
+    "rulings_r8": "Claude round 8 (2026-10-19 07:52 PDT + claude_round8_reply.md): run count 24/22/20; checkpoints mandatory with sha; eval scoring only at unseal (DL-28); supersedes new_benchmarks_h5_v3_r7_draft.json (b3264d77)"
+  },
+  "role": "descriptive benchmark arms; OUTSIDE the Holm family; primary arms and inference unchanged",
+  "naming_rule": "default-h5 arms use published hyperparameters and may be called 'published/Qlib defaults (h5 label)'. tuned-h5 arms must never be called 'official/published default'.",
+  "data_convention": {
+    "features": "identical to v2 (same clean panel, filter_col_20, step_len_ts 20, VWAP0 handling as v2)",
+    "label": {
+      "name": "h5",
+      "definition": "C(t+6)/C(t+1)-1 (entry_idx=t+1, exit_idx_h5=t+6 in labels npz)",
+      "source_keys": [
+        "z_h5",
+        "label_mask_h5",
+        "exit_idx_h5",
+        "entry_idx"
+      ],
+      "labels_file": "data/csi300_w1w2/data/v2/new_v2_labels_csi300.npz (sha 7bf5633b7ad9d146e5154a120307d8dbf771a9d5a5c9852f9eb7aba0bd1064a5, same file as v2 runs)",
+      "processor": "CSRankNorm per date over label_mask_h5: (rank(pct=True, method=average)-0.5)*3.46, mirroring DL-2 / v2 csrank_labels with r1->h5",
+      "used_for": "train and validation labels only (as r1 in v2)",
+      "purge": {
+        "enabled": true,
+        "rule": "drop every train/valid sample whose h5 label endpoint dates[t+6] is after its segment end (train 2018-12-31, valid 2020-12-31); same rule as LiMT Data.loss_masks (limt-repro v2_w4_data.py:72-76)",
+        "disclosure": "default-r1 arms (v2) were NOT purged: r1 endpoint t+2 overlaps 1 day per boundary. Claude estimate of h5 cost: ~5 of ~2,500 train days, 4 of ~485 valid days; no sealed data touched either way"
+      }
+    },
+    "segments": {
+      "train": [
+        "2008-01-01",
+        "2018-12-31"
+      ],
+      "valid": [
+        "2019-01-01",
+        "2020-12-31"
+      ]
+    },
+    "valid_ic5": {
+      "definition": "for each validation signal day t (BlindData.days('valid')): Pearson corr between score and z_h5[t] over loss mask = splits loss_mask_valid[t] & (dates[t+6]<=2020-12-31) & listing_eligible[t] & isfinite(score) & isfinite(z_h5[t]); same as limt-repro v2_w5_results.daily_ic (:85-103); metric = mean over days with defined IC",
+      "used_for": [
+        "early stopping in valid_ic5 configs (maximize)",
+        "configuration selection (all 8 configs)"
+      ]
+    }
+  },
+  "models": {
+    "LSTM": {
+      "official_entry_v2": {
+        "module": "qlib.contrib.model.pytorch_lstm_ts",
+        "class": "LSTM",
+        "kwargs": {
+          "d_feat": 20,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "n_epochs": 200,
+          "lr": 0.001,
+          "early_stop": 10,
+          "batch_size": 800,
+          "metric": "loss",
+          "loss": "mse",
+          "n_jobs": 20,
+          "GPU": 0,
+          "seed": 1
+        },
+        "label_processor": "csrank",
+        "feature_processing_official": "RobustZScoreNorm fit on official training window; clip +/-3; Fillna 0; model-specific FilterCol",
+        "feature_processing_ours": "RobustZScoreNorm fit 2008-2018; clip +/-3; Fillna 0; VWAP0 set to 0; model-specific FilterCol",
+        "seed_policy": "Explicit model seeds 1,2,3. Existing effective-seed-0 XGB/Transformer artefacts remain descriptive."
+      },
+      "width_param": "hidden_size"
+    },
+    "Transformer": {
+      "official_entry_v2": {
+        "module": "qlib.contrib.model.pytorch_transformer_ts",
+        "class": "TransformerModel",
+        "kwargs": {
+          "seed": 1,
+          "n_jobs": 20
+        },
+        "note": "all other hyperparameters = class defaults of qlib v0.9.6 pytorch_transformer_ts.TransformerModel",
+        "label_processor": "csrank",
+        "feature_processing_official": "RobustZScoreNorm fit on official training window; clip +/-3; Fillna 0; model-specific FilterCol",
+        "feature_processing_ours": "RobustZScoreNorm fit 2008-2018; clip +/-3; Fillna 0; VWAP0 set to 0; model-specific FilterCol",
+        "seed_policy": "Explicit model seeds 1,2,3. Existing effective-seed-0 XGB/Transformer artefacts remain descriptive."
+      },
+      "width_param": "d_model",
+      "note": "v2 passes only seed,n_jobs; all else = v0.9.6 class defaults (official metric '' = loss, early_stop 5, n_epochs 100, lr 1e-4, d_model 64). Tuned configs pass lr/d_model explicitly; nhead 2 divides 128."
+    }
+  },
+  "unchanged_in_all_configs": "every kwarg not listed in the grid stays at the official value, incl. n_epochs (LSTM 200, Transformer 100), early_stop patience (LSTM 10, Transformer 5), batch_size (800 / 8192), num_layers, dropout, loss mse, n_jobs, optimizer, reg",
+  "tuning_grid": {
+    "factors": {
+      "lr": [
+        "official",
+        "official/10"
+      ],
+      "width (LSTM hidden_size / Transformer d_model)": [
+        "official",
+        "2x official"
+      ],
+      "early_stop_metric": [
+        "valid_loss (official)",
+        "valid_ic5"
+      ]
+    },
+    "configs": [
+      {
+        "cfg": "cfg1",
+        "lr": "official",
+        "width": "official",
+        "early_stop_metric": "valid_loss",
+        "n_nonofficial": 0
+      },
+      {
+        "cfg": "cfg2",
+        "lr": "official",
+        "width": "official",
+        "early_stop_metric": "valid_ic5",
+        "n_nonofficial": 1
+      },
+      {
+        "cfg": "cfg3",
+        "lr": "official",
+        "width": "2x",
+        "early_stop_metric": "valid_loss",
+        "n_nonofficial": 1
+      },
+      {
+        "cfg": "cfg4",
+        "lr": "official",
+        "width": "2x",
+        "early_stop_metric": "valid_ic5",
+        "n_nonofficial": 2
+      },
+      {
+        "cfg": "cfg5",
+        "lr": "official/10",
+        "width": "official",
+        "early_stop_metric": "valid_loss",
+        "n_nonofficial": 1
+      },
+      {
+        "cfg": "cfg6",
+        "lr": "official/10",
+        "width": "official",
+        "early_stop_metric": "valid_ic5",
+        "n_nonofficial": 2
+      },
+      {
+        "cfg": "cfg7",
+        "lr": "official/10",
+        "width": "2x",
+        "early_stop_metric": "valid_loss",
+        "n_nonofficial": 2
+      },
+      {
+        "cfg": "cfg8",
+        "lr": "official/10",
+        "width": "2x",
+        "early_stop_metric": "valid_ic5",
+        "n_nonofficial": 3
+      }
+    ],
+    "resolved": {
+      "LSTM": {
+        "cfg1": {
+          "lr": 0.001,
+          "hidden_size": 64,
+          "early_stop_metric": "valid_loss"
+        },
+        "cfg2": {
+          "lr": 0.001,
+          "hidden_size": 64,
+          "early_stop_metric": "valid_ic5"
+        },
+        "cfg3": {
+          "lr": 0.001,
+          "hidden_size": 128,
+          "early_stop_metric": "valid_loss"
+        },
+        "cfg4": {
+          "lr": 0.001,
+          "hidden_size": 128,
+          "early_stop_metric": "valid_ic5"
+        },
+        "cfg5": {
+          "lr": 0.0001,
+          "hidden_size": 64,
+          "early_stop_metric": "valid_loss"
+        },
+        "cfg6": {
+          "lr": 0.0001,
+          "hidden_size": 64,
+          "early_stop_metric": "valid_ic5"
+        },
+        "cfg7": {
+          "lr": 0.0001,
+          "hidden_size": 128,
+          "early_stop_metric": "valid_loss"
+        },
+        "cfg8": {
+          "lr": 0.0001,
+          "hidden_size": 128,
+          "early_stop_metric": "valid_ic5"
+        }
+      },
+      "Transformer": {
+        "cfg1": {
+          "lr": 0.0001,
+          "d_model": 64,
+          "early_stop_metric": "valid_loss"
+        },
+        "cfg2": {
+          "lr": 0.0001,
+          "d_model": 64,
+          "early_stop_metric": "valid_ic5"
+        },
+        "cfg3": {
+          "lr": 0.0001,
+          "d_model": 128,
+          "early_stop_metric": "valid_loss"
+        },
+        "cfg4": {
+          "lr": 0.0001,
+          "d_model": 128,
+          "early_stop_metric": "valid_ic5"
+        },
+        "cfg5": {
+          "lr": 1e-05,
+          "d_model": 64,
+          "early_stop_metric": "valid_loss"
+        },
+        "cfg6": {
+          "lr": 1e-05,
+          "d_model": 64,
+          "early_stop_metric": "valid_ic5"
+        },
+        "cfg7": {
+          "lr": 1e-05,
+          "d_model": 128,
+          "early_stop_metric": "valid_loss"
+        },
+        "cfg8": {
+          "lr": 1e-05,
+          "d_model": 128,
+          "early_stop_metric": "valid_ic5"
+        }
+      }
+    },
+    "cfg1_is_official": "cfg1 = all official values = default-h5 configuration; cfg1 seed1 is ONE run counted both as default-h5 seed1 and as a tuning-pool member"
+  },
+  "selection": {
+    "seed": 1,
+    "metric": "valid_ic5 (mean daily 5d IC, 2019-2020) of the restored best checkpoint (the deployed model), for every config including valid_loss-stopped ones",
+    "tie_rule": "best = max IC over 8 configs; pool = configs with IC >= best - 0.002; within pool choose fewest non-official factors (n_nonofficial); then highest IC; then lowest cfg index",
+    "nonfinite_or_failed": "any failed/nonfinite config -> STOP and report (no selection)",
+    "logging": "stdout prints only the selected config name per model; per-config IC written to selection JSON file only",
+    "bias_disclosure": "valid_ic5-early-stopped configs are selected on the same metric and window they stopped on, so selection is optimistic toward them; this favours the tuned arm, i.e. errs toward fairness to the benchmarks and is conservative for the LiMT claim",
+    "if_cfg1_selected": "tuned-h5 IS default-h5: report as a finding ('the tuning budget selected the published configuration'), not as two arms; no extra runs"
+  },
+  "arms": {
+    "LSTM-h5default": [
+      "LSTM-h5default_seed1 (= tuning run cfg1 seed1)",
+      "LSTM-h5default_seed2",
+      "LSTM-h5default_seed3"
+    ],
+    "LSTM-h5tuned": "if k*!=cfg1: LSTM-h5tuned_cfg{k*}_seed{1,2,3}, seed1 = tuning run (disclosed); if k*==cfg1: no separate arm (finding)",
+    "Transformer-h5default": [
+      "Transformer-h5default_seed1 (= tuning run cfg1 seed1)",
+      "Transformer-h5default_seed2",
+      "Transformer-h5default_seed3"
+    ],
+    "Transformer-h5tuned": "same rule as LSTM"
+  },
+  "run_count": {
+    "per_model": "7 tuning-only (cfg2..cfg8 seed1) + 3 default-h5 (seed1 doubles as cfg1) + 2 tuned seeds 2-3 = 12; 10 if cfg1 selected",
+    "total": "24 / 22 / 20 (zero / one / both models select cfg1)",
+    "declared": "Claude round 8 (c): 24 / 22 / 20",
+    "note": "cfg1 seed1 is default-h5 seed1 (reused); each model that selects cfg1 saves 2 runs"
+  },
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "rule_selection": {
+    "window": "rule_select 2021-2022",
+    "rules": "same 8-rule grid as v2 (new_bench_replay.RULES)",
+    "aggregation": "averaged over seeds 1-3",
+    "tie": "0.5 pp -> lower turnover (new_bench_replay.choose_rule)",
+    "label_tag": "h5csrank"
+  },
+  "compute": {
+    "estimate_A10_hours": "5-8 (Claude, for 26); counts toward the 60 GPU-h cap (discretionary)",
+    "accounting": "GPU hours = GPU instance wall clock whenever an instance is up, incl. idle and debugging; sum of per-tag device time also logged for information"
+  },
+  "step_len_ts": 20,
+  "filter_col_20": [
+    "RESI5",
+    "WVMA5",
+    "RSQR5",
+    "KLEN",
+    "RSQR10",
+    "CORR5",
+    "CORD5",
+    "CORR10",
+    "ROC60",
+    "RESI10",
+    "VSTD5",
+    "RSQR60",
+    "CORR60",
+    "WVMA60",
+    "STD5",
+    "RSQR20",
+    "CORD60",
+    "CORD10",
+    "CORR20",
+    "KLOW"
+  ],
+  "tag_naming": {
+    "tuning": "<Model>-h5tuned_cfg{k}_seed1 for k=2..8; cfg1 seed1 is stored ONCE as <Model>-h5default_seed1 and referenced as the cfg1 tuning-pool member",
+    "final_tuned": "<Model>-h5tuned_cfg{k*}_seed{2,3} (seed1 = existing tuning run)"
+  },
+  "evaluation": "eval-window books for these arms come only from the frozen descriptive script src/new_bench_eval_v1.py (arms listed in gate_b.json), never from v3.1; outside Holm",
+  "checkpoints": {
+    "required": true,
+    "what": "restored best-epoch state_dict per run, new_<tag>.pt",
+    "hash": "sha256 recorded as artifact_sha256 in <tag>.meta.json; hard fail if missing or mismatched",
+    "upload": "packed with metas into a separate dataset subdir, apart from the score archive",
+    "gate_b": "all checkpoint sha256 listed in gate_b.json descriptive_arms[*].score_source"
+  },
+  "eval_scoring": "evaluation period scored only at unseal by src/new_bench_eval_v1.py (imports src/new_guarded_data_v1.py); no eval-period prediction before unseal, including trial scoring (DL-28)"
+}
