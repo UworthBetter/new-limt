@@ -64,11 +64,17 @@
 
 5 日 IC：H 0.0382 / H-FT 0.0556 / G0 0.0549 / C0 0.0548 / G0dose 0.0396 / C0dose 0.0435（三种子版本逐值在文件）。soft−topk：正式臂 −12～−13pp；剂量臂 G0dose −50pp（soft −29.7 vs topk +20.3）。
 
-## 7. CSI500 H（Kaggle，Gate C 素材）
+## 7. CSI500 H（Kaggle，Gate C 素材）——三种子全部完成并验收（09:05 更新）
 
-- seed 1：**已验收**（12ep 选 ep4，val_aux 0.9432；三锚全对：data_version `bae7115e`、config hash `393b1993`、trainer sha；checkpoint sha `06cd06e5` 本地复核一致；runs/csi500_H_kaggle/）
-- 种子 2-3：`csi500-h-s23` kernel 在飞（~08:30 前后），轮询器自动收货后同流程验收
-- 环境：T4×1、torch 2.11+cu128、python 3.13.15（与本地不同源，逐位轨迹不保证——预注册框架允许，运行环境已记录）
+| 种子 | 轮数 | 选轮 | val_aux | checkpoint sha256（本地复核=manifest=日志） |
+|---|---|---|---|---|
+| 1 | 12 | ep4 | 0.94321 | `06cd06e5…` |
+| 2 | 13 | ep5 | 0.94280 | `d6ef1297…` |
+| 3 | 14 | ep6 | 0.94195 | `4d961d0b…` |
+
+三锚全部通过：data_version `bae7115e`（三种子同）、config hash `393b1993`（与 CSI300 正式跑逐位同）、trainer sha 自检。产物归位 `runs/csi500_H_kaggle/`（含 manifest_s1/s23）。环境：T4、torch 2.11+cu128、python 3.13.15（与本地不同源，运行环境已记录；预注册框架允许）。注意：CSI300 的 H 三种子全部 11ep 选 ep3，CSI500 选轮随种子后移（4/5/6）——种子间变异正常范围。
+
+CSI500 的 G0/C0 仍等本地成交账本工程（1802 只 baostock 下载），属 Gate C 后路径，不阻塞 Gate B。
 
 ## 8. gate_b.json 草案要素（待用户点头后写入）
 
