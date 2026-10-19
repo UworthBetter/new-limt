@@ -9,3 +9,9 @@
 | 2026-10-19 | run_benchmarks 增 `--seed`（全局种子与 tag 后缀），服务 DL 2026-10-19 种子扩展条目 | 见当日 log | engineering fix, no protocol change | 仅新增 CLI 参数；seed 1 行为不变 |
 
 *日期按本仓库既有约定（本地时区）记录；对外产物中的时间按用户指示另行换算。
+
+| 日期* | 修复/事件 | 提交 | 性质 | 影响评估 |
+|---|---|---|---|---|
+| 2026-10-19 | XGB/DE 特征集修正执行：重跑于全 158 列（DL 条目先行）。结果：XGBoost 40s、验证窗 r1 IC **0.0445**（20 列版 0.0323 作废）；DoubleEnsemble 574s、IC **0.0401**（原 0.0245 作废）。对照：CPU lgbm-reg r1（全 158 特征）IC 0.0352——修正后 GBDT 双双超过 LightGBM，排序合理 | 见 DL 2026-10-19 第二条 + 当日 log | spec correction toward official defaults | 20 列版低 IC 确系特征维度枷锁；外部审阅判断成立 |
+| 2026-10-19 | H seed2/3 分数重放核验：以修复后代码重打分，并经 rule_grid_neural 幂等分支对 2021–2022 全部 8 规则×2 种子的已存 daily.csv 逐字符比对——16/16 零差异（重放层逐位一致） | — | verification, no change | 080a1c7 时序披露的补充证据 |
+| 2026-10-19 | 事故记录：H 核验的网格调用意外以 2-tag 部分运行覆写了 14 臂 selection json；随后全量 14-tag 幂等重跑恢复（全部走比对分支，数值不变） | 见当日 log | operational incident, no data change | 选择产物恢复；教训=部分运行也写汇总文件 |
