@@ -289,8 +289,8 @@ Decisions deferred until Gate D: headline claim, title, venue and tier, extra ba
 
 ## 13. Stopping rule
 
-- Maximum GPU budget: no external session quota applies (local RTX 4050, single GPU; runs are serial). Practical bound: the remaining planned matrix (seeds 2-3, benchmark arms, CSI500, rule grids) at measured timings, roughly 40-60 GPU-hours; anything beyond the planned matrix requires a Deviation Log entry first (Section 14).
-- Hard date after which the paper is written with whatever has completed: **explicitly open at Gate A (2026-10-18)** — a user decision, to be fixed before Gate C; recorded here as open rather than invented.
+- Maximum GPU budget: no external session quota applies (local RTX 4050 plus the Kaggle T4 offload). Closed at review (2026-10-19, user may veto before unsealing): **no experiments beyond the preregistered matrix and Deviation-Log-registered arms; remaining planned compute bounded at 60 GPU-hours** (CSI500 fine-tunes are the bulk; the feed build is CPU/network work).
+- Hard date after which the paper is written with whatever has completed: closed at review (2026-10-19, user may veto before unsealing): **2027-01-15** (chosen so the post-cutoff holdout can reach its 120-day minimum, which arrives around end of 2026).
 - No experiment outside this document is started without a Deviation Log entry made before it runs.
 
 ## 14. Deviation log

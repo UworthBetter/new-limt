@@ -118,7 +118,7 @@ The **frozen analysis code** is committed at `src/gate_b_analysis.py`, sha256 `5
   "config_hashes": {
     "neural_formal": "393b1993...", "trainer": "a960a995...", "data_version_csi300": "3c70f663...",
     "execution_feed_resset": "aff735c3...", "benchmark_h00300": "d6b21b61...",
-    "cpu_baselines": "4c585a0f...", "benchmarks_spec": "<sha256 of the corrected benchmarks_qlib_defaults_v1.json>",
+    "cpu_baselines": "4c585a0f...", "benchmarks_spec": "e189f6cbe3453d17...",
     "code_commit": "<HEAD at write time>"
   },
   "fee_schedule": {"buy_bp": 5, "sell_bp": 15, "min_fee_cny": 5, "lot": 100, "capital_cny": 1e8,
