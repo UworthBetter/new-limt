@@ -83,9 +83,9 @@ Same selection convention; configuration = `src/cpu_baselines.py`, sha256 `4c585
 
 **Specification wording**: Qlib defaults, **except label normalization: CSRankNorm not re-added** — all other hyperparameters verbatim from the official qlib v0.9.6 `examples/benchmarks` Alpha158 configurations (`configs/benchmarks_qlib_defaults_v1.json`, sha256 `da5b7425…`); clean panel, FilterCol 20-column subset, z_r1 label; train 2008–2018 with early stopping on 2019–2020, confirmed per model: the four neural models early-stop on validation loss (11/11/11/7 epochs, best at epoch 0–1 — recorded as a descriptive fact); XGBoost runs under qlib's own fit defaults (num_boost_round 1000, early_stopping_rounds 50 on validation — the yaml's n_estimators is not consumed by qlib's train path; disclosed); DoubleEnsemble trains its configured 3 sub-models × 28 rounds with no early stopping.
 
-**Forensics (resolving the "implausibly fast" flag)** — `protocol/checks/benchmark_forensics.json`: training rows **768,935** (train) / 145,719 (valid), within 0.08% of the CPU baseline's 768,338 (the baseline additionally requires all 158 features finite; no training-set shrinkage); XGBoost trained ~106 rounds (best 56 + patience 50), DoubleEnsemble 84 rounds; the input is 20 columns (FilterCol), which explains the runtimes. Validation r1 IC: XGBoost 0.0323, DoubleEnsemble 0.0245, LSTM 0.0197, GRU 0.0246, ALSTM 0.0211, Transformer 0.0294 (485 days each).
+**Forensics (resolving the "implausibly fast" flag)** — `protocol/checks/benchmark_forensics.json` plus the correction below: training rows **768,935** (train) / 145,719 (valid), within 0.08% of the CPU baseline's 768,338 (the baseline additionally requires all 158 features finite; no training-set shrinkage). The initial XGBoost/DoubleEnsemble runs used the 20-column FilterCol subset; the external review caught that **their official yamls specify no FilterCol** (it appears only in the four neural ts configs), so both were re-run on the full 158-column handler under a Deviation Log entry recorded first (DoubleEnsemble's num_models = 3 was verified correct). Corrected values: XGBoost 40 s, validation r1 IC **0.0445**; DoubleEnsemble 574 s, IC **0.0401**; the CPU LightGBM-r1 reference (158 features) is 0.0352 — the corrected GBDTs now rank sensibly above it. The four neural models ran on FilterCol-20 as their yamls specify (early stop 11/11/11/7 epochs, best at epoch 0–1; IC 0.020–0.029 — published defaults, untuned, by design, reported plainly).
 
-**Seed policy (frozen by the Deviation Log entry committed before any run)**: LSTM / GRU / ALSTM / DoubleEnsemble use seeds 1–3 with rules selected on the seed average (Section 8A "3 seeds if stochastic"); seeds 2–3 are running now. XGBoost and Transformer remain deterministic single runs (xgboost default seed 0 with the deterministic single-machine hist algorithm; Transformer's official yaml pins seed 0 — replicating it would produce identical copies).
+**Seed policy (frozen by the Deviation Log entry committed before any run)**: LSTM / GRU / ALSTM / DoubleEnsemble use seeds 1–3 with rules selected on the seed average (Section 8A "3 seeds if stochastic"); seeds 2–3 are running now. XGBoost and Transformer remain deterministic single runs recorded at **seed 0** (xgboost's default seed with the deterministic single-machine hist algorithm; Transformer's official yaml pins seed 0 — replicating it would produce identical copies).
 
 **Environment disclosure**: pyqlib installed from the relabelled cp312 wheel; the `qlib.data._libs` stubs **raise NotImplementedError on any invocation** — there is no silent fallback path; the qlib expression engine is never on this study's code path.
 
@@ -109,13 +109,16 @@ All three pass the anchors: data_version `bae7115e…` (identical across seeds a
 
 ## 12. gate_b.json draft (to be written only after final review)
 
+The **frozen analysis code** is committed at `src/gate_b_analysis.py`, sha256 `5742585a…` (commit `4f60ef4`), with a passing synthetic self-test; it computes Delta, the stationary bootstrap (block 10 / 10,000 resamples / rng seed 20261019 / one-sided 5%), TOST (2.0 pp, 90% CI), Newey-West (lag 5), SC1/SC2/SC5/SC6/SC7, Holm over SC1/SC5/SC6/SC7 (SC2 is a ratio reported per-seed; SC4 enters at Gate C), the S1-condition table, and the stamp-duty sensitivity via a date-dependent sell fee whose replay is diagonal-verified against the production replay. The script refuses to run unless gate_b.json records its own sha256.
+
 ```json
 {
   "unseal_scope": "CSI300 only; CSI500 evaluation outputs stay sealed until CSI500 G0/C0 exist and their rules are selected on 2021-2022",
+  "analysis_sha256": "5742585ac41a9a291b0eaefed0086cc337220ad9cdf73aee290f16d3430325b6",
   "config_hashes": {
     "neural_formal": "393b1993...", "trainer": "a960a995...", "data_version_csi300": "3c70f663...",
     "execution_feed_resset": "aff735c3...", "benchmark_h00300": "d6b21b61...",
-    "cpu_baselines": "4c585a0f...", "benchmarks_spec": "da5b7425...",
+    "cpu_baselines": "4c585a0f...", "benchmarks_spec": "<sha256 of the corrected benchmarks_qlib_defaults_v1.json>",
     "code_commit": "<HEAD at write time>"
   },
   "fee_schedule": {"buy_bp": 5, "sell_bp": 15, "min_fee_cny": 5, "lot": 100, "capital_cny": 1e8,
@@ -126,14 +129,21 @@ All three pass the anchors: data_version `bae7115e…` (identical across seeds a
                 "primary_bound": "one-sided 5% lower bound of Delta",
                 "newey_west_lag": 5,
                 "holm_family": ["SC1", "SC2", "SC4", "SC5", "SC6", "SC7"],
-                "sc3_note": "SC3 coincides with the primary (both arms selected the default rule); not double-counted"},
+                "sc3_note": "SC3 coincides with the primary (both arms selected the default rule); not double-counted",
+                "sc4_note": "SC4 enters the family when CSI500 lands at Gate C; the family closes then",
+                "tost": {"margin_pp": 2.0, "ci": "90% stationary bootstrap, same settings"}},
   "selected_rules": {"H": "drop20-every5d", "H-FT": "drop2-every1d", "G0": "drop5-every1d", "C0": "drop5-every1d",
+                     "G0dose003_exploratory": "drop5-every1d", "C0dose003_exploratory": "drop2-every1d",
                      "ridge_h5": "drop5-every5d", "ridge_r1": "drop2-every1d",
                      "lgbm-reg_h5": "drop10-every5d", "lgbm-reg_r1": "drop5-every1d",
                      "lgbm-rank_h5": "drop2-every1d", "lgbm-rank_r1": "drop5-every5d"},
+  "default_rule": "drop5-every1d (topk 50, drop 5, daily) — also the selected rule of both primary arms",
   "benchmark_rules": {"<filled from the 3-seed selection once seeds 2-3 land>": "..."},
   "seeds": {"neural": [1, 2, 3], "cpu_lgbm": [1, 2, 3], "ridge": [1],
-            "benchmarks_stochastic": [1, 2, 3], "benchmarks_deterministic": [1], "dose": [1]},
+            "benchmarks_stochastic": [1, 2, 3],
+            "benchmarks_deterministic": {"XGBoost": 0, "Transformer": 0},
+            "dose": [1]},
+  "deferred_arms": {"C-T": "deferred per v0.6 Section 8 (penalty magnitude equals the fee term already shown near-inert)"},
   "holdout_minimum_days": 120,
   "exploratory_arms": ["G0dose003_seed1", "C0dose003_seed1", "six Qlib-default benchmark arms (descriptive)"],
   "estimand_note": "Delta = default-rule paired difference (both arms selected the default rule)"
@@ -141,6 +151,8 @@ All three pass the anchors: data_version `bae7115e…` (identical across seeds a
 ```
 
 After writing and committing, the sha256 of gate_b.json is recorded in `protocol/gates.md`.
+
+**Gate A open items proposed for closure (user may veto before unsealing):** hard write-up date **2027-01-15** (chosen so the post-cutoff holdout can reach its 120-day minimum, which arrives around end of 2026); GPU budget **no experiments beyond the preregistered matrix and Deviation-Log-registered arms; remaining planned compute bounded at 60 GPU-hours** (CSI500 feed build is CPU/network work; CSI500 fine-tunes are the bulk of the remaining GPU budget).
 
 ## 13. Post-unseal execution
 
