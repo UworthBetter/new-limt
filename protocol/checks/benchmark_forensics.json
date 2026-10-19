@@ -1,0 +1,98 @@
+{
+ "train_row_counts": {
+  "train": 768935,
+  "valid": 145719
+ },
+ "reference": "ridge r1 fit samples from the 2026-10-17 CPU-baseline run: 768,338 (train)",
+ "XGBoost_seed1": {
+  "fit_seconds": 9.764131299976725,
+  "evals_result_summary": {
+   "train": [
+    57,
+    0,
+    0.9980205104054285
+   ],
+   "valid": [
+    57,
+    56,
+    0.9985788480570514
+   ]
+  },
+  "mean_valid_r1_ic": 0.032271185168336644,
+  "ic_days": 485
+ },
+ "DoubleEnsemble_seed1": {
+  "fit_seconds": 74.7855036999681,
+  "evals_result_summary": null,
+  "mean_valid_r1_ic": 0.024479981347112274,
+  "ic_days": 485
+ },
+ "LSTM_seed1": {
+  "fit_seconds": 2478.205581999966,
+  "evals_result_summary": {
+   "train": [
+    11,
+    10,
+    -0.9500403835919844
+   ],
+   "valid": [
+    11,
+    0,
+    -0.9965995789726795
+   ]
+  },
+  "mean_valid_r1_ic": 0.0197424501282201,
+  "ic_days": 485
+ },
+ "GRU_seed1": {
+  "fit_seconds": 2445.576625799993,
+  "evals_result_summary": {
+   "train": [
+    11,
+    10,
+    -0.9843243229029454
+   ],
+   "valid": [
+    11,
+    0,
+    -0.9951000058848555
+   ]
+  },
+  "mean_valid_r1_ic": 0.024639955580386567,
+  "ic_days": 485
+ },
+ "ALSTM_seed1": {
+  "fit_seconds": 2119.5409603000153,
+  "evals_result_summary": {
+   "train": [
+    11,
+    10,
+    -0.9428632105550458
+   ],
+   "valid": [
+    11,
+    0,
+    -0.9967705850278475
+   ]
+  },
+  "mean_valid_r1_ic": 0.02109161744644244,
+  "ic_days": 485
+ },
+ "Transformer_seed1": {
+  "fit_seconds": 2226.642594899982,
+  "evals_result_summary": {
+   "train": [
+    7,
+    5,
+    -0.9918784537623005
+   ],
+   "valid": [
+    7,
+    1,
+    -0.9736226411426768
+   ]
+  },
+  "mean_valid_r1_ic": 0.02945052090709476,
+  "ic_days": 485
+ }
+}
