@@ -5,11 +5,12 @@
     "note": "Hyperparameters pinned verbatim from the official Alpha158 benchmark workflows. No tuning. MASTER not included: no Qlib-contrib implementation exists at v0.9.6 or main (checked 2026-10-18)."
   },
   "data_convention": {
-    "features": "clean CSI300 panel (Alpha158 columns) as consumed by every arm; subset = FilterCol col_list below, verbatim from the LSTM Alpha158 ts workflow; no extra infer processors (the clean panel is already the W1-verified processed input)",
-    "label": "z_r1 (clean 1-day label, close(t+2)/close(t+1)-1, cross-sectionally z-scored; same definition as the ridge/LightGBM r1 cells of Section 8A). Qlib's own CSRankNorm label processor is NOT re-applied; noted in the benchmark README.",
+    "features": "clean CSI300 panel (Alpha158 columns) as consumed by every arm. Per-model feature sets follow the official v0.9.6 yamls: LSTM/GRU/ALSTM/Transformer configs specify FilterCol col_list (20 columns, verbatim below); XGBoost and DoubleEnsemble configs specify NO FilterCol and therefore use the full 158-column Alpha158 handler. No extra infer processors (the clean panel is already the W1-verified processed input: RobustZScoreNorm fit 2008-01-01..train_end, fillna(0)).",
+    "label": "z_r1 (clean 1-day label, close(t+2)/close(t+1)-1, cross-sectionally z-scored; same definition as the ridge/LightGBM r1 cells of Section 8A). Qlib's own CSRankNorm label processor (explicit in the NN yamls, class-default for XGB/DE) is NOT re-applied; this is the only deviation from the published pipelines.",
     "segments": {"train": ["2008-01-01", "2018-12-31"], "valid": ["2019-01-01", "2020-12-31"]},
-    "seed_policy": "single run per model. LSTM/GRU/ALSTM/XGBoost/DoubleEnsemble: torch/np/lgb seeds = 1. Transformer keeps its config seed 0 (the only seed appearing in the official yaml)."
+    "seed_policy": "LSTM/GRU/ALSTM: seeds 1-3 (stochastic, no config seed; global torch/np seeding). DoubleEnsemble: seeds 1-3 (np-seeded sample reweighting; no config seed). XGBoost: single run at xgboost's default seed 0 (deterministic single-machine hist). Transformer: single run at its config seed 0 (deterministic by configuration)."
   },
+  "feature_sets": {"filter20_models": ["LSTM", "GRU", "ALSTM", "Transformer"], "all158_models": ["XGBoost", "DoubleEnsemble"]},
   "filter_col_20": ["RESI5", "WVMA5", "RSQR5", "KLEN", "RSQR10", "CORR5", "CORD5", "CORR10", "ROC60", "RESI10", "VSTD5", "RSQR60", "CORR60", "WVMA60", "STD5", "RSQR20", "CORD60", "CORD10", "CORR20", "KLOW"],
   "models": {
     "LSTM": {"module": "qlib.contrib.model.pytorch_lstm_ts", "class": "LSTM", "kwargs": {"d_feat": 20, "hidden_size": 64, "num_layers": 2, "dropout": 0.0, "n_epochs": 200, "lr": 0.001, "early_stop": 10, "batch_size": 800, "metric": "loss", "loss": "mse", "n_jobs": 20, "GPU": 0}},
