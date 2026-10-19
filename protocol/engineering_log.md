@@ -15,3 +15,4 @@
 | 2026-10-19 | XGB/DE 特征集修正执行：重跑于全 158 列（DL 条目先行）。结果：XGBoost 40s、验证窗 r1 IC **0.0445**（20 列版 0.0323 作废）；DoubleEnsemble 574s、IC **0.0401**（原 0.0245 作废）。对照：CPU lgbm-reg r1（全 158 特征）IC 0.0352——修正后 GBDT 双双超过 LightGBM，排序合理 | 见 DL 2026-10-19 第二条 + 当日 log | spec correction toward official defaults | 20 列版低 IC 确系特征维度枷锁；外部审阅判断成立 |
 | 2026-10-19 | H seed2/3 分数重放核验：以修复后代码重打分，并经 rule_grid_neural 幂等分支对 2021–2022 全部 8 规则×2 种子的已存 daily.csv 逐字符比对——16/16 零差异（重放层逐位一致） | — | verification, no change | 080a1c7 时序披露的补充证据 |
 | 2026-10-19 | 事故记录：H 核验的网格调用意外以 2-tag 部分运行覆写了 14 臂 selection json；随后全量 14-tag 幂等重跑恢复（全部走比对分支，数值不变） | 见当日 log | operational incident, no data change | 选择产物恢复；教训=部分运行也写汇总文件 |
+| 2026-10-19 | 种子扩展完成 + 作废文件替换：seeds 2-3 双流水线并行落地（13/13 训练零失败）；XGB/DE r1 的 20 列版 daily.csv 按 DL 作废条目删除并由 158 列版重新生成（幂等校验正确拦截了差异、按 supersession 处理）；三种子 benchmark 正式选择出炉 | — | execution of registered entries | runs/csi300_bench_selection.json 终版 |
