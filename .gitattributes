@@ -62,3 +62,4 @@ src/new_verify_seeds_h5_v3.py -text
 src/new_rule_grid_bench_h5_v3.py -text
 src/new_bench_forensics_h5_v3.py -text
 tests/new_test_h5_benchmarks.py -text
+protocol/new_DL16_addendum_push_20261019.md -text
