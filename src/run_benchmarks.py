@@ -137,14 +137,17 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--cache", required=True, type=Path)
     parser.add_argument("--models", nargs="+", required=True)
+    parser.add_argument("--seed", type=int, default=1,
+                        help="global torch/numpy/random seed and the tag suffix; Transformer keeps its config seed 0")
     args = parser.parse_args()
     spec = json.loads(SPEC.read_text(encoding="utf-8"))
     for name in args.models:
         if name not in spec["models"]:
             raise SystemExit(f"unknown benchmark model {name}")
-    random.seed(1); np.random.seed(1)
+    seed = args.seed
+    random.seed(seed); np.random.seed(seed)
     import torch
-    torch.manual_seed(1)
+    torch.manual_seed(seed)
     data = Data(W0W2, args.cache, 21, 0, DEFAULT["evaluation_end"])
     with np.load(LABELS, allow_pickle=False) as labels:
         z_r1 = labels["z_r1"]
@@ -181,7 +184,7 @@ def main():
     for name in args.models:
         entry = spec["models"][name]
         t0 = time.perf_counter()
-        random.seed(1); np.random.seed(1); torch.manual_seed(1)
+        random.seed(seed); np.random.seed(seed); torch.manual_seed(seed)
         module = __import__(entry["module"], fromlist=[entry["class"]])
         cls = getattr(module, entry["class"])
         kwargs = dict(entry["kwargs"])
@@ -219,7 +222,7 @@ def main():
             valid_preds = model.predict(valid_ds, segment="test")
         matrix = score_matrix(preds, select_dates, list(data.symbols))
         matrix_valid = score_matrix(valid_preds, valid_dates, list(data.symbols))
-        tag = f"{name}_seed1"
+        tag = f"{name}_seed{seed}"
         meta = dict(tag=tag, model=entry["module"] + "." + entry["class"], kwargs=kwargs,
                     seed_policy=spec["data_convention"]["seed_policy"], fit_seconds=fit_seconds,
                     evals_result_summary={k: (len(v), (v.index(max(v)) if v else None), (max(v) if v else None))
