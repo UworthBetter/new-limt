@@ -1,0 +1,197 @@
+--- frozen-original
++++ new-implementation
+@@ -1,4 +1,4 @@
+-"""DRAFT v3 analysis code for the Gate B unsealing (CSI300).
++"""v3.1d analysis code for the Gate B unsealing (CSI300).
+ 
+ Commit this file BEFORE any 2023+ output is opened; its sha256 goes into
+ gate_b.json (analysis_sha256). Scope: the neural primary arms (C0/G0, seeds
+@@ -37,6 +37,10 @@
+ estimand mismatch is disclosed, and the algorithm is unchanged.
+ An actual-access date guard covers replay prices (including terminal), soft
+ relative-price reads, selected h5 endpoints, and sampled benchmark rows.
++Construction exceptions: Data initialization and load_execution_feed alignment
++validation use raw data before it is immediately wrapped. All prediction,
++replay, soft portfolio and IC paths then use GuardedData. The numerical
++statistics, replay algorithms and Holm family are unchanged.
+ Only --self-test is authorized for this coding round; --run is for a later,
+ hash-approved Gate B unsealing. No evaluation metrics are printed.
+ 
+@@ -66,82 +70,10 @@
+ HOLM_KEYS = ("SC1", "SC5", "SC6", "SC7")  # SC3 == primary; SC4 pending CSI500
+ 
+ 
+-class DateGuard:
+-    def __init__(self, cutoff="2026-06-30"):
+-        self.cutoff = cutoff
+-        self.maximum = {"prices": None, "labels": None, "bench": None}
+-
+-    def touch(self, category, day):
+-        value = str(np.datetime64(day, "D"))
+-        if value == "NaT":
+-            raise SystemExit("invalid accessed date")
+-        old = self.maximum[category]
+-        self.maximum[category] = value if old is None else max(old, value)
+-        if value > self.cutoff:
+-            raise SystemExit(f"date guard: {category}={value} > {self.cutoff}")
+-
+-    def label_endpoint(self, dates, t, mask):
+-        if np.any(mask):
+-            if t + 6 >= len(dates):
+-                raise SystemExit("label endpoint exceeds available calendar")
+-            self.touch("labels", dates[t + 6])
+-
+-    def report(self):
+-        overall = max((d for d in self.maximum.values() if d is not None), default=None)
+-        result = dict(self.maximum, overall=overall)
+-        print("ASSERT max_date_touched " + " ".join(f"{k}={v}" for k, v in result.items())
+-              + f" <= {self.cutoff}", flush=True)
+-        return result
+-
+-
+-class GuardedBench(dict):
+-    def __init__(self, values, guard):
+-        super().__init__(values)
+-        self.guard = guard
+-
+-    def __getitem__(self, key):
+-        self.guard.touch("bench", key)
+-        return super().__getitem__(key)
+-
+-    def get(self, key, default=None):
+-        if key in self:
+-            self.guard.touch("bench", key)
+-        return super().get(key, default)
+-
+-
+-class PriceGuardData:
+-    def __init__(self, data, guard):
+-        self.data, self.guard = data, guard
+-
+-    def __getattr__(self, name):
+-        return getattr(self.data, name)
+-
+-    @property
+-    def stale(self):
+-        return PriceGuardArray(self.data.stale, self.data.dates, self.guard)
+-
+-    def relatives(self, mark_day, previous_day):
+-        for t in (mark_day, previous_day):
+-            self.guard.touch("prices", self.data.dates[t])
+-        return self.data.relatives(mark_day, previous_day)
+-
+-
+-class PriceGuardArray:
+-    """Guard individual row reads, including the unchanged diagonal replay."""
+-    def __init__(self, values, dates, guard):
+-        self.values, self.dates, self.guard = values, dates, guard
+-
+-    def __getitem__(self, index):
+-        day_index = index[0] if isinstance(index, tuple) else index
+-        for day in np.atleast_1d(self.dates[day_index]):
+-            self.guard.touch("prices", day)
+-        return self.values[index]
+-
+-
+-def guard_execution_feed(feed, dates, guard):
+-    for key in ("raw_close", "state", "share_multiplier", "cash_dividend_per_old_share"):
+-        feed[key] = PriceGuardArray(feed[key], dates, guard)
+-    return feed
++from new_guarded_data_v1 import (
++    DateGuard, UNSEAL_CUTOFF, GuardedData, GuardedBench, guard_execution_feed,
++    guarded_portfolio_events, import_closure, third_party_versions, verify_guard,
++    self_test as guard_self_test)
+ 
+ 
+ def checkpoint(group, seed):
+@@ -381,15 +313,19 @@
+     preflight([args.out, args.cache])
+     provenance = Provenance(__file__, args)
+     global GUARD
+-    GUARD = DateGuard()
++    GUARD = DateGuard(UNSEAL_CUTOFF)
+     gate_b = json.loads((ROOT / "protocol" / "gate_b.json").read_text(encoding="utf-8"))
+     own = sha256_file(Path(__file__))
+     if gate_b.get("analysis_sha256") != own:
+         raise SystemExit("analysis_sha256 in gate_b.json does not match this file; refusing to run")
++    guard_sha = verify_guard(ROOT, gate_b)
++    closure_start = import_closure(ROOT, args.limt_src)
++    soft_marks = []
+     import torch
+     device = "cuda" if torch.cuda.is_available() else "cpu"
+     data = Data(W0W2, args.cache, 21, 0, DEFAULT["evaluation_end"])
+     feed = guard_execution_feed(load_execution_feed(data, FEED), data.dates, GUARD)
++    data = GuardedData(data, GUARD)
+     bench_values = GuardedBench(load_bench(BENCH_CSV)["values"], GUARD)
+ 
+     # Pre-unseal guard: the fee-variant replay must equal the production replay.
+@@ -408,8 +344,8 @@
+                                   CB_DEFAULT["sell_rate"], CB_DEFAULT["sell_rate"], "9999-01-01")
+         c_net, c_fee, c_ex = rows_to_series(c_rows, bench_values)
+         g_net, g_fee, g_ex = rows_to_series(g_rows, bench_values)
+-        c_soft = portfolio_events(PriceGuardData(data, GUARD), eval_days, c0, TAU, CB_DEFAULT["buy_rate"], CB_DEFAULT["sell_rate"], "soft")
+-        g_soft = portfolio_events(PriceGuardData(data, GUARD), eval_days, g0, TAU, CB_DEFAULT["buy_rate"], CB_DEFAULT["sell_rate"], "soft")
++        c_soft = guarded_portfolio_events(portfolio_events, data, eval_days, c0, GUARD, soft_marks, tau=TAU, buy=CB_DEFAULT["buy_rate"], sell=CB_DEFAULT["sell_rate"], rule="soft")
++        g_soft = guarded_portfolio_events(portfolio_events, data, eval_days, g0, GUARD, soft_marks, tau=TAU, buy=CB_DEFAULT["buy_rate"], sell=CB_DEFAULT["sell_rate"], rule="soft")
+         c_soft_ex = np.array([r["net_return"] - bench_values.get(r["date"], np.nan) for r in c_soft])
+         g_soft_ex = np.array([r["net_return"] - bench_values.get(r["date"], np.nan) for r in g_soft])
+         keep = np.isfinite(c_soft_ex) & np.isfinite(g_soft_ex)
+@@ -491,6 +427,12 @@
+     adjusted = holm(list(holm_members.values()))
+     result["holm"] = {k: dict(p_raw=p, p_holm=a) for (k, p), a in zip(holm_members.items(), adjusted)}
+     result["max_date_touched"] = GUARD.report()
++    result.update(GUARD.metadata(('prices', 'marks', 'features', 'labels', 'bench')))
++    result['soft_marks_max_per_call'] = [dict(arm=arm, seed=seed, maximum=value)
++        for (seed, arm), value in zip(((s,a) for s in SEEDS for a in ('C0','G0')), soft_marks)]
++    result['import_closure'] = dict(start=closure_start,
++        end=import_closure(ROOT, args.limt_src, closure_start),
++        third_party=third_party_versions(('torch','numpy')))
+     result["analysis_sha256"] = own
+     result["holm_family_gate_b"] = list(holm_members)
+     result["meta"] = provenance.finish(dict(
+@@ -501,7 +443,8 @@
+     print(f"WROTE {args.out}", flush=True)
+ 
+ 
+-def self_test():
++def self_test(limt_src=None):
++    guard_self_test(limt_src)
+     rng = np.random.default_rng(7)
+     r = infer(np.full(300, 0.001), n_boot=500)
+     assert abs(r["mean"] - 0.001) < 1e-9 and abs(r["lower_5"] - 0.001) < 1e-9, r
+@@ -539,7 +482,7 @@
+     calendar = calendar[np.is_busday(calendar)]
+     normal = int(np.flatnonzero(calendar == np.datetime64("2026-06-22"))[0])
+     unsafe = int(np.flatnonzero(calendar == np.datetime64("2026-06-26"))[0])
+-    guard = DateGuard()
++    guard = DateGuard(UNSEAL_CUTOFF)
+     guard.label_endpoint(calendar, normal, np.array([True]))
+     guard.label_endpoint(calendar, unsafe, np.array([False]))
+     assert guard.maximum["labels"] == "2026-06-30"
+@@ -550,7 +493,7 @@
+     else:
+         raise AssertionError("label mask substitution must fail")
+     for category in ("prices", "bench"):
+-        guard = DateGuard()
++        guard = DateGuard(UNSEAL_CUTOFF)
+         guard.touch(category, "2026-06-30")
+         try:
+             guard.touch(category, "2026-07-01")
+@@ -582,7 +525,7 @@
+     parser.add_argument("--out", type=Path)
+     args = parser.parse_args()
+     if args.self_test:
+-        self_test()
++        self_test(args.limt_src or Path(__file__).resolve().parents[2] / "limt-repro/src")
+         return
+     resolve_paths(args, ("root", "limt_src", "w0w2", "labels", "panel", "splits", "spec", "feed", "bench"))
+     if args.cache is None:
+@@ -598,7 +541,7 @@
+     global ROOT, W0W2, FEED, BENCH_CSV, RUNS
+     ROOT, W0W2, FEED, BENCH_CSV = args.root, args.w0w2, args.feed, args.bench
+     RUNS = ROOT / "runs"
+-    args.out = args.out or RUNS / "new_gate_b_analysis_v3.json"
++    args.out = args.out or RUNS / "new_gate_b_analysis_v3_1.json"
+     preflight([args.out, args.cache])
+     global CB_DEFAULT, load_bench, share_replay, Data, make_model, predict
+     global portfolio_events, topk_target, Account, execute_close, listing_eligible

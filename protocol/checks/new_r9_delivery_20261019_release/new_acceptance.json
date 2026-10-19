@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "synthetic_only": true,
+  "checks": [
+    {
+      "log": "new_pytest.txt",
+      "returncode": 0,
+      "sha256": "518207344864484600d88e09c5e3cc2319df83467191081b5637abf5cc70a451"
+    },
+    {
+      "log": "new_guard_self_test.txt",
+      "returncode": 0,
+      "sha256": "c97d54fab44f205916d9439907ba116bb553bf3976d8eab881f8a5e5d73b6699"
+    },
+    {
+      "log": "new_analysis_self_test.txt",
+      "returncode": 0,
+      "sha256": "3c98ec1c168595936434129421a3bb31675b11c901526c5bee7ee8ee3a66fc59"
+    },
+    {
+      "log": "new_t1_smoke.txt",
+      "returncode": 0,
+      "sha256": "3a0999acb754a51e7480386ac919c2da0d499ee4f3a3de4695a13296d017fb00"
+    },
+    {
+      "log": "new_runner_smoke.txt",
+      "returncode": 0,
+      "sha256": "4be3ddbe0248f1282fa97da151db4187bfd646e7544fb7c17d7236a1514f11a2"
+    },
+    {
+      "log": "new_smoke_schema.txt",
+      "returncode": 0,
+      "sha256": "6c6edc3790155e706de4c49560f1c401fbda272767e46dfe1f2f39a75d1dd805"
+    },
+    {
+      "log": "new_bench_eval_final_pytest.txt",
+      "returncode": 0,
+      "sha256": "c13f6f3a2de5edcff14a47833a50e3d04d25d29147d61bec430e8967ea614974"
+    }
+  ],
+  "protected_unchanged": true,
+  "production_blockers": [
+    "Reviewed h5 draft still declares DRAFT; experiment assistant must finalize and freeze it.",
+    "Final spec must add six r1 metadata SHA256 pins in r1_meta_sha256 (two models x three seeds).",
+    "Guard, checksum, finalized spec and DL entries must be committed and pushed before real runs.",
+    "Production T1 and h5 require ModelScope A10 / pinned runtime; local synthetic evidence is not that runtime."
+  ],
+  "final_adapter_source_sha256": "cc5c12faa2f350a22d4ca441e89dd713ab8bc2cff212b800e65b6e832e2967fd",
+  "protected_baseline_count": 14,
+  "code_file_count": 25,
+  "syntax_check": true,
+  "tag_cardinality_check": true
+}

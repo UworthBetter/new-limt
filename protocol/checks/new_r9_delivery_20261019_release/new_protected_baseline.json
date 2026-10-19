@@ -1,0 +1,72 @@
+{
+  "src/new_run_benchmarks_v2.py": {
+    "expected": "4a96e6ebbdb6686ed243b162fc03575004e98d0e0ba81e3c10c8c9d8f3789fe6",
+    "actual": "4a96e6ebbdb6686ed243b162fc03575004e98d0e0ba81e3c10c8c9d8f3789fe6",
+    "passed": true
+  },
+  "src/new_verify_seeds.py": {
+    "expected": "919eb74116d79cda3cab123323ff03bfc63d72907e0cc10b84eebe541a283cf8",
+    "actual": "919eb74116d79cda3cab123323ff03bfc63d72907e0cc10b84eebe541a283cf8",
+    "passed": true
+  },
+  "src/new_rule_grid_bench_v2.py": {
+    "expected": "ad4a8b1e48a00124c815d8a033ebea0ce45a1a42d6132f8d7aa768fed320d7e0",
+    "actual": "ad4a8b1e48a00124c815d8a033ebea0ce45a1a42d6132f8d7aa768fed320d7e0",
+    "passed": true
+  },
+  "src/new_bench_forensics_v2.py": {
+    "expected": "6731849040e341b21d6527c05c46961df2240f35b7c246fa4aa7e1632d0bb65b",
+    "actual": "6731849040e341b21d6527c05c46961df2240f35b7c246fa4aa7e1632d0bb65b",
+    "passed": true
+  },
+  "src/new_gate_b_common.py": {
+    "expected": "12632786f8801d5f233f9293b108e5f6fba5afe75a0b088bd5e8aa5d197ba849",
+    "actual": "12632786f8801d5f233f9293b108e5f6fba5afe75a0b088bd5e8aa5d197ba849",
+    "passed": true
+  },
+  "src/new_bench_dataset.py": {
+    "expected": "2bd555f8c7052624bcfa43b067f1f81964e8f894c66918531bbd9879e8528616",
+    "actual": "2bd555f8c7052624bcfa43b067f1f81964e8f894c66918531bbd9879e8528616",
+    "passed": true
+  },
+  "src/new_bench_replay.py": {
+    "expected": "ba32c089c864a9989cb7f12af8c8ff46c0db0f9c73131c16304f03d5e54406f5",
+    "actual": "ba32c089c864a9989cb7f12af8c8ff46c0db0f9c73131c16304f03d5e54406f5",
+    "passed": true
+  },
+  "src/new_gate_b_analysis_v3.py": {
+    "expected": "203e6a455796f4eca90fa5a9a0038459eec2324279bb13c72d5622339dd8f75d",
+    "actual": "203e6a455796f4eca90fa5a9a0038459eec2324279bb13c72d5622339dd8f75d",
+    "passed": true
+  },
+  "configs/new_benchmarks_qlib_defaults_v2.json": {
+    "expected": "49010f9b891316468a4c48fef1a5078a850deb38f571e8ac8e3be751e1f41f90",
+    "actual": "49010f9b891316468a4c48fef1a5078a850deb38f571e8ac8e3be751e1f41f90",
+    "passed": true
+  },
+  "configs/benchmarks_qlib_defaults_v1.json": {
+    "expected": "e189f6cbe3453d172fc407b6bf2117be15bcba7c72c698f53f125d92533e5165",
+    "actual": "e189f6cbe3453d172fc407b6bf2117be15bcba7c72c698f53f125d92533e5165",
+    "passed": true
+  },
+  "src/cpu_baselines.py": {
+    "expected": "4c585a0fda0d93055aae78e5c2099cfe08ae701d52132803ac77460456e940da",
+    "actual": "4c585a0fda0d93055aae78e5c2099cfe08ae701d52132803ac77460456e940da",
+    "passed": true
+  },
+  "src/run_benchmarks.py": {
+    "expected": "824daa85536b85e81c28381ebc5b5b4474cd6506dccb03cc500e37e15e5daa8a",
+    "actual": "824daa85536b85e81c28381ebc5b5b4474cd6506dccb03cc500e37e15e5daa8a",
+    "passed": true
+  },
+  "../limt-repro/src/v2_w4_training.py": {
+    "expected": "a960a9951ab52c5455c15f8e0c5d60a783a6beb4beef5b4003ee578f0c21ee43",
+    "actual": "a960a9951ab52c5455c15f8e0c5d60a783a6beb4beef5b4003ee578f0c21ee43",
+    "passed": true
+  },
+  "../limt-repro/src/v2_w4_data.py": {
+    "expected": "89638e96c6b6f6c54f0bb3c07cad3c3413bbe17e82b8219bd80008da72914a4a",
+    "actual": "89638e96c6b6f6c54f0bb3c07cad3c3413bbe17e82b8219bd80008da72914a4a",
+    "passed": true
+  }
+}

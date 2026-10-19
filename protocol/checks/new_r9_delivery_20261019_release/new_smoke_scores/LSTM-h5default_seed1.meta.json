@@ -1,0 +1,330 @@
+{
+  "git_head": "7e0ffbd7cbe5441e2651a1bf2e27450fbe5f15e7",
+  "git_dirty": true,
+  "script_sha256": "dcdc484485e6adb129c2bf6d9685910324d4316f1923a1f9dc7d70a024c2e38c",
+  "inputs": {
+    "spec": {
+      "path": "D:\\research\\new_LiMT\\configs\\new_benchmarks_h5_v3.json",
+      "sha256": "039ee1cb5955ebae200ca1081309ee6635975217f290f1bb99f138bfef749d28"
+    },
+    "labels": {
+      "status": "synthetic"
+    },
+    "panel": {
+      "status": "synthetic"
+    },
+    "splits": {
+      "status": "synthetic"
+    },
+    "feed": {
+      "status": "synthetic"
+    },
+    "bench": {
+      "status": "synthetic"
+    }
+  },
+  "dependency_sha256": {
+    "new_benchmark_manifest_v1.py": "90d33f4cecc10187a7909022635432212270cbd284a82684d00411d7f8ebcda5",
+    "new_bench_dataset.py": "2bd555f8c7052624bcfa43b067f1f81964e8f894c66918531bbd9879e8528616",
+    "new_bench_eval_v1.py": "cc5c12faa2f350a22d4ca441e89dd713ab8bc2cff212b800e65b6e832e2967fd",
+    "new_bench_forensics_h5_v3.py": "a5cf3d5b4fc19ed9df3daea220821f4587825c30d915d637a5a81d1cd9d3dd76",
+    "new_bench_forensics_v2.py": "6731849040e341b21d6527c05c46961df2240f35b7c246fa4aa7e1632d0bb65b",
+    "new_bench_forensics_v2p.py": "7496010030b204011829dcbbc38b5e102b4768cb61036abcaa2ddb17ad784d76",
+    "new_bench_replay.py": "ba32c089c864a9989cb7f12af8c8ff46c0db0f9c73131c16304f03d5e54406f5",
+    "new_compare_ridge_daily_v1.py": "07f4e1214b619468827bd44002b46cdf5c2c6f0f1b837e7b6faea9528349a9ca",
+    "new_compare_scores_v1.py": "8145cd48cbbc879cecb0b223d8bc1dd8775fa23e955de681a945c5a8d5061804",
+    "new_cpu_reselect_v1.py": "9cc6c6281a47ccb3d147dedde5c9b0608ed4bb3d88820e3ce9c4615a0e9aa58a",
+    "new_gate_b_analysis_v3.py": "203e6a455796f4eca90fa5a9a0038459eec2324279bb13c72d5622339dd8f75d",
+    "new_gate_b_analysis_v3_1.py": "4135981bbaf7844bc270a26b0a4de7cbe06983342e4ad9a62d51590d273e4b88",
+    "new_gate_b_common.py": "12632786f8801d5f233f9293b108e5f6fba5afe75a0b088bd5e8aa5d197ba849",
+    "new_gate_b_delivery_audit.py": "8fad533df1b6dc4c77d357cdd79a2834fedf34f65b444913d46f95869dba06ac",
+    "new_gate_c_holm.py": "4993c4d2fc8d167eefe9db6b6948d699157d78f7a7bbac3b37ea42e3cc3f40a2",
+    "new_guarded_data_v1.py": "5de86785d2725a48b03ceb4c865926fd3c6516157c23f4780bd86844cbd7efa3",
+    "new_h5_common_v3.py": "2ea3364406d9930572c0c039603226fb4180de67a55c5d7c23cd4e2ee79fdc57",
+    "new_h5_models_v3.py": "7de14bedc4577f8b7b09eb81caf5b3f1c10548eb0e3f6bef0cec9d0b1edb2eb5",
+    "new_label_rank_check.py": "a3a9268088282f1fad3809bf10f19eafd2354ee8e3f984a152a15983a28f2700",
+    "new_label_rank_check_v2.py": "220cb19d6cf5abb8208a8fff80e8c3737f29ddad8f326c9af8486f87a9e0eae4",
+    "new_model_artifacts_v1.py": "936f58c7a7e450dc3dbfe510d44efae5734ed571aea47426bc17b0bdeed79662",
+    "new_r9_delivery_check.py": "c03e44755a970983aad0ec9a0a0268d7fb0eae1fc6eca3c07db64c043ccf16ad",
+    "new_retrain_bench_v1.py": "8035e16575b0fd2fe04a8d77208fa35eed7d5ca1ca35a15e72415670f7b0dcae",
+    "new_rule_grid_bench_h5_v3.py": "9c4ef9dce9a2b94fead1a8b089acc61cddcfb7ce12afc0428015d7a14f0cf935",
+    "new_rule_grid_bench_v2.py": "ad4a8b1e48a00124c815d8a033ebea0ce45a1a42d6132f8d7aa768fed320d7e0",
+    "new_rule_grid_bench_v2p.py": "c0ac213d64e5fa6a57007dd52e023f5558d7c0ba793dff640719f3c94fff16b4",
+    "new_run_benchmarks_h5_v3.py": "dcdc484485e6adb129c2bf6d9685910324d4316f1923a1f9dc7d70a024c2e38c",
+    "new_run_benchmarks_v2.py": "4a96e6ebbdb6686ed243b162fc03575004e98d0e0ba81e3c10c8c9d8f3789fe6",
+    "new_select_h5_config_v3.py": "db693292c5c61586cd16018a71ca1be91385e2f9b4dac7da4b6150a220be174e",
+    "new_unseal_once_v1.py": "b62b44575269dce50b2b6728288ad709e525bedbf2b4c23df8f71e9ee8e6acad",
+    "new_verify_seeds.py": "919eb74116d79cda3cab123323ff03bfc63d72907e0cc10b84eebe541a283cf8",
+    "new_verify_seeds_h5_v3.py": "a63f8d170c3024c592df582019a4d2fab7b3b5af61f7c793e7b179e1ecdbfa7a"
+  },
+  "spec_sha256": "039ee1cb5955ebae200ca1081309ee6635975217f290f1bb99f138bfef749d28",
+  "versions": {
+    "python": "3.13.9",
+    "pyqlib": "0.9.6",
+    "numpy": "2.4.1",
+    "pandas": "2.3.3",
+    "torch": "2.7.1+cu118",
+    "xgboost": "3.4.1"
+  },
+  "cuda": "11.8",
+  "hip": null,
+  "hostname": "LAPTOP-O1OVIMBD",
+  "os": "Windows-11-10.0.26200-SP0",
+  "cpu": "AMD Ryzen 7 7735H with Radeon Graphics",
+  "cpu_logical_cores": 16,
+  "memory_bytes": 16366567424,
+  "gpus": [
+    {
+      "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "memory_bytes": 6438780928
+    }
+  ],
+  "cpu_physical_cores": 8,
+  "cpu_affinity_cores": null,
+  "torch_num_threads": 1,
+  "omp_num_threads": "1",
+  "miopen_user_db_path": null,
+  "started_at": "2026-10-19T16:10:27.879716+00:00",
+  "ended_at": "2026-10-19T16:10:45.201997+00:00",
+  "argv": [
+    "D:\\research\\new_LiMT\\src\\new_run_benchmarks_h5_v3.py",
+    "--root",
+    "D:\\research\\new_LiMT",
+    "--limt-src",
+    "D:\\research\\limt-repro\\src",
+    "--spec",
+    "D:\\research\\new_LiMT\\configs\\new_benchmarks_h5_v3.json",
+    "--cache",
+    "D:\\research\\new_LiMT\\protocol\\checks\\new_r9_delivery_20261019_release\\new_smoke_cache",
+    "--models",
+    "LSTM",
+    "Transformer",
+    "--arm",
+    "default",
+    "--models-out",
+    "D:\\research\\new_LiMT\\protocol\\checks\\new_r9_delivery_20261019_release\\new_smoke_models",
+    "--out-dir",
+    "D:\\research\\new_LiMT\\protocol\\checks\\new_r9_delivery_20261019_release\\new_smoke_scores",
+    "--threads",
+    "1",
+    "--smoke"
+  ],
+  "wall_seconds": 17.184620400017593,
+  "device_hours": 0.0,
+  "synthetic": true,
+  "xgb_actual_nthread": null,
+  "tag": "LSTM-h5default_seed1",
+  "model": "qlib.contrib.model.pytorch_lstm_ts.LSTM",
+  "kwargs": {
+    "d_feat": 20,
+    "hidden_size": 64,
+    "num_layers": 2,
+    "dropout": 0.0,
+    "n_epochs": 2,
+    "lr": 0.001,
+    "early_stop": 10,
+    "batch_size": 64,
+    "metric": "loss",
+    "loss": "mse",
+    "n_jobs": 0,
+    "GPU": -1,
+    "seed": 1
+  },
+  "effective_model_settings": {
+    "n_epochs": 2,
+    "early_stop": 10,
+    "batch_size": 64,
+    "n_jobs": 0,
+    "device": "cpu",
+    "d_feat": 20,
+    "lr": 0.001,
+    "hidden_size": 64,
+    "num_layers": 2,
+    "dropout": 0.0,
+    "optimizer": "adam",
+    "loss": "mse"
+  },
+  "arm": "default",
+  "cfg": "cfg1",
+  "grid_factors": {
+    "cfg": "cfg1",
+    "lr": "official",
+    "width": "official",
+    "early_stop_metric": "valid_loss",
+    "n_nonofficial": 0
+  },
+  "effective_seed": 1,
+  "seed_passed_to_model": 1,
+  "feature_set": "filter20",
+  "n_features": 20,
+  "seed_policy": "Explicit model seeds 1,2,3. Existing effective-seed-0 XGB/Transformer artefacts remain descriptive.",
+  "model_started_at": "2026-10-19T16:10:28.051062+00:00",
+  "model_wall_seconds": 16.81121549999807,
+  "fit_defaults": {},
+  "expected_container_image": null,
+  "seed_verification_sha256": null,
+  "label": "h5",
+  "label_norm": "csrank_h5",
+  "rank_set": "label_mask_h5",
+  "purge_h5": true,
+  "purge_asymmetry": "r1 runner has no purge; h5 purge is mandatory",
+  "ic_overlap_note": "overlapping labels affect variance; only mean IC is selected",
+  "early_stop_metric": "valid_loss",
+  "training": {
+    "per_epoch": [
+      {
+        "epoch": 0,
+        "train_loss": 0.9390726237709216,
+        "valid_loss": 0.9516547186953644,
+        "valid_ic5": 0.45465492228658905
+      },
+      {
+        "epoch": 1,
+        "train_loss": 0.5988451117649418,
+        "valid_loss": 0.6489816932944671,
+        "valid_ic5": 0.7689781758585892
+      }
+    ],
+    "actual_epochs": 2,
+    "best_epoch": 1,
+    "train": {
+      "actual_rounds": 2,
+      "best_iteration": 1,
+      "minimum_loss": 0.5988451117649418
+    },
+    "valid": {
+      "actual_rounds": 2,
+      "best_iteration": 1,
+      "minimum_loss": 0.6489816932944671
+    }
+  },
+  "best_epoch": 1,
+  "best_valid_ic5": 0.7689781758585892,
+  "fit_seconds": 5.106271199998446,
+  "selection_role": "default",
+  "smoke": true,
+  "descriptive": true,
+  "t1_record_sha256": null,
+  "checkpoint": {
+    "artifact_sha256": "3b6766f69693412213ccc364eaf26f2314c41482c192b1649ec6087e785dc800",
+    "checkpoint_path": "D:\\research\\new_LiMT\\protocol\\checks\\new_r9_delivery_20261019_release\\new_smoke_models\\new_LSTM-h5default_seed1.pt",
+    "checkpoint_bytes": 224901,
+    "n_tensors": 10
+  },
+  "guard_cutoff_name": "PRE_UNSEAL_CUTOFF",
+  "guard_cutoff_value": "2022-12-31",
+  "guarded_data_sha256": "5de86785d2725a48b03ceb4c865926fd3c6516157c23f4780bd86844cbd7efa3",
+  "max_date_touched": {
+    "prices": null,
+    "marks": null,
+    "features": "2018-09-05",
+    "labels": "2018-07-06",
+    "bench": null
+  },
+  "artifact_sha256": "3b6766f69693412213ccc364eaf26f2314c41482c192b1649ec6087e785dc800",
+  "checkpoint_path": "D:\\research\\new_LiMT\\protocol\\checks\\new_r9_delivery_20261019_release\\new_smoke_models\\new_LSTM-h5default_seed1.pt",
+  "checkpoint_bytes": 224901,
+  "n_tensors": 10,
+  "score_sha256": "e886c78beb4c00cf837b5f615ae50a54ab46deae18b8f891b79db50584b57530",
+  "import_closure": {
+    "start": {
+      "__main__": {
+        "path": "D:\\research\\new_LiMT\\src\\new_run_benchmarks_h5_v3.py",
+        "sha256": "dcdc484485e6adb129c2bf6d9685910324d4316f1923a1f9dc7d70a024c2e38c"
+      },
+      "new_gate_b_common": {
+        "path": "D:\\research\\new_LiMT\\src\\new_gate_b_common.py",
+        "sha256": "12632786f8801d5f233f9293b108e5f6fba5afe75a0b088bd5e8aa5d197ba849"
+      },
+      "new_bench_dataset": {
+        "path": "D:\\research\\new_LiMT\\src\\new_bench_dataset.py",
+        "sha256": "2bd555f8c7052624bcfa43b067f1f81964e8f894c66918531bbd9879e8528616"
+      },
+      "new_run_benchmarks_v2": {
+        "path": "D:\\research\\new_LiMT\\src\\new_run_benchmarks_v2.py",
+        "sha256": "4a96e6ebbdb6686ed243b162fc03575004e98d0e0ba81e3c10c8c9d8f3789fe6"
+      },
+      "new_guarded_data_v1": {
+        "path": "D:\\research\\new_LiMT\\src\\new_guarded_data_v1.py",
+        "sha256": "5de86785d2725a48b03ceb4c865926fd3c6516157c23f4780bd86844cbd7efa3"
+      },
+      "new_h5_common_v3": {
+        "path": "D:\\research\\new_LiMT\\src\\new_h5_common_v3.py",
+        "sha256": "2ea3364406d9930572c0c039603226fb4180de67a55c5d7c23cd4e2ee79fdc57"
+      },
+      "__mp_main__": {
+        "path": "D:\\research\\new_LiMT\\src\\new_run_benchmarks_h5_v3.py",
+        "sha256": "dcdc484485e6adb129c2bf6d9685910324d4316f1923a1f9dc7d70a024c2e38c"
+      },
+      "new_h5_models_v3": {
+        "path": "D:\\research\\new_LiMT\\src\\new_h5_models_v3.py",
+        "sha256": "7de14bedc4577f8b7b09eb81caf5b3f1c10548eb0e3f6bef0cec9d0b1edb2eb5"
+      }
+    },
+    "end": {
+      "__main__": {
+        "path": "D:\\research\\new_LiMT\\src\\new_run_benchmarks_h5_v3.py",
+        "sha256": "dcdc484485e6adb129c2bf6d9685910324d4316f1923a1f9dc7d70a024c2e38c"
+      },
+      "new_gate_b_common": {
+        "path": "D:\\research\\new_LiMT\\src\\new_gate_b_common.py",
+        "sha256": "12632786f8801d5f233f9293b108e5f6fba5afe75a0b088bd5e8aa5d197ba849"
+      },
+      "new_bench_dataset": {
+        "path": "D:\\research\\new_LiMT\\src\\new_bench_dataset.py",
+        "sha256": "2bd555f8c7052624bcfa43b067f1f81964e8f894c66918531bbd9879e8528616"
+      },
+      "new_run_benchmarks_v2": {
+        "path": "D:\\research\\new_LiMT\\src\\new_run_benchmarks_v2.py",
+        "sha256": "4a96e6ebbdb6686ed243b162fc03575004e98d0e0ba81e3c10c8c9d8f3789fe6"
+      },
+      "new_guarded_data_v1": {
+        "path": "D:\\research\\new_LiMT\\src\\new_guarded_data_v1.py",
+        "sha256": "5de86785d2725a48b03ceb4c865926fd3c6516157c23f4780bd86844cbd7efa3"
+      },
+      "new_h5_common_v3": {
+        "path": "D:\\research\\new_LiMT\\src\\new_h5_common_v3.py",
+        "sha256": "2ea3364406d9930572c0c039603226fb4180de67a55c5d7c23cd4e2ee79fdc57"
+      },
+      "__mp_main__": {
+        "path": "D:\\research\\new_LiMT\\src\\new_run_benchmarks_h5_v3.py",
+        "sha256": "dcdc484485e6adb129c2bf6d9685910324d4316f1923a1f9dc7d70a024c2e38c"
+      },
+      "new_h5_models_v3": {
+        "path": "D:\\research\\new_LiMT\\src\\new_h5_models_v3.py",
+        "sha256": "7de14bedc4577f8b7b09eb81caf5b3f1c10548eb0e3f6bef0cec9d0b1edb2eb5"
+      }
+    },
+    "third_party": {
+      "torch": {
+        "distribution": "2.7.1+cu118",
+        "module": "2.7.1+cu118",
+        "cuda": "11.8"
+      },
+      "pyqlib": {
+        "distribution": "0.9.6",
+        "module": "0.9.6"
+      },
+      "xgboost": {
+        "distribution": "3.4.1",
+        "module": "3.4.1"
+      },
+      "lightgbm": {
+        "distribution": "4.7.0",
+        "module": "4.7.0"
+      },
+      "numpy": {
+        "distribution": "2.4.1",
+        "module": "2.4.1"
+      },
+      "pandas": {
+        "distribution": "2.3.3",
+        "module": "2.3.3"
+      },
+      "scipy": {
+        "distribution": "1.17.0",
+        "module": "1.17.0"
+      }
+    }
+  }
+}

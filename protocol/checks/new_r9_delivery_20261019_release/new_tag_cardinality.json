@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "selected": [
+        "cfg1",
+        "cfg1"
+      ],
+      "runs": 20
+    },
+    {
+      "selected": [
+        "cfg1",
+        "cfg2"
+      ],
+      "runs": 22
+    },
+    {
+      "selected": [
+        "cfg2",
+        "cfg2"
+      ],
+      "runs": 24
+    }
+  ]
+}

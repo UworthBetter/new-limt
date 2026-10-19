@@ -1,0 +1,847 @@
+{
+  "passed": true,
+  "checks": {
+    "LSTM/cfg1": {
+      "passed": true,
+      "hashes": [
+        "25fc909645ad9c3bd5ff92f9aedff08029ee34d3a315d7fb0893b550372f3862",
+        "25fc909645ad9c3bd5ff92f9aedff08029ee34d3a315d7fb0893b550372f3862",
+        "57ecc57c5c4e7d60d4222c3bd2e9db493143381f694a27a0be8a16ad6e675afb"
+      ],
+      "settings": [
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "LSTM/cfg2": {
+      "passed": true,
+      "hashes": [
+        "25fc909645ad9c3bd5ff92f9aedff08029ee34d3a315d7fb0893b550372f3862",
+        "25fc909645ad9c3bd5ff92f9aedff08029ee34d3a315d7fb0893b550372f3862",
+        "57ecc57c5c4e7d60d4222c3bd2e9db493143381f694a27a0be8a16ad6e675afb"
+      ],
+      "settings": [
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "LSTM/cfg3": {
+      "passed": true,
+      "hashes": [
+        "8768b2ea09dad44213234de85beb5a954a047d4221d530a1b2c199956dfe321b",
+        "8768b2ea09dad44213234de85beb5a954a047d4221d530a1b2c199956dfe321b",
+        "34641d80dc357493c91e273689801eaaedf878751afdcb34795f2ef17a82b476"
+      ],
+      "settings": [
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "LSTM/cfg4": {
+      "passed": true,
+      "hashes": [
+        "8768b2ea09dad44213234de85beb5a954a047d4221d530a1b2c199956dfe321b",
+        "8768b2ea09dad44213234de85beb5a954a047d4221d530a1b2c199956dfe321b",
+        "34641d80dc357493c91e273689801eaaedf878751afdcb34795f2ef17a82b476"
+      ],
+      "settings": [
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "LSTM/cfg5": {
+      "passed": true,
+      "hashes": [
+        "25fc909645ad9c3bd5ff92f9aedff08029ee34d3a315d7fb0893b550372f3862",
+        "25fc909645ad9c3bd5ff92f9aedff08029ee34d3a315d7fb0893b550372f3862",
+        "57ecc57c5c4e7d60d4222c3bd2e9db493143381f694a27a0be8a16ad6e675afb"
+      ],
+      "settings": [
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "LSTM/cfg6": {
+      "passed": true,
+      "hashes": [
+        "25fc909645ad9c3bd5ff92f9aedff08029ee34d3a315d7fb0893b550372f3862",
+        "25fc909645ad9c3bd5ff92f9aedff08029ee34d3a315d7fb0893b550372f3862",
+        "57ecc57c5c4e7d60d4222c3bd2e9db493143381f694a27a0be8a16ad6e675afb"
+      ],
+      "settings": [
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 64,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "LSTM/cfg7": {
+      "passed": true,
+      "hashes": [
+        "8768b2ea09dad44213234de85beb5a954a047d4221d530a1b2c199956dfe321b",
+        "8768b2ea09dad44213234de85beb5a954a047d4221d530a1b2c199956dfe321b",
+        "34641d80dc357493c91e273689801eaaedf878751afdcb34795f2ef17a82b476"
+      ],
+      "settings": [
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "LSTM/cfg8": {
+      "passed": true,
+      "hashes": [
+        "8768b2ea09dad44213234de85beb5a954a047d4221d530a1b2c199956dfe321b",
+        "8768b2ea09dad44213234de85beb5a954a047d4221d530a1b2c199956dfe321b",
+        "34641d80dc357493c91e273689801eaaedf878751afdcb34795f2ef17a82b476"
+      ],
+      "settings": [
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 200,
+          "early_stop": 10,
+          "batch_size": 800,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "d_feat": 20,
+          "lr": 0.0001,
+          "hidden_size": 128,
+          "num_layers": 2,
+          "dropout": 0.0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "Transformer/cfg1": {
+      "passed": true,
+      "hashes": [
+        "0b3de6277b6bf1d4c51b6b290f44545f841ccc9b266472ddc0330ae3352eb3b2",
+        "0b3de6277b6bf1d4c51b6b290f44545f841ccc9b266472ddc0330ae3352eb3b2",
+        "aea9cc0d05ffdea771f8fbb96b557c22164ddd0635e8bccabd017403b1105a8f"
+      ],
+      "settings": [
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "Transformer/cfg2": {
+      "passed": true,
+      "hashes": [
+        "0b3de6277b6bf1d4c51b6b290f44545f841ccc9b266472ddc0330ae3352eb3b2",
+        "0b3de6277b6bf1d4c51b6b290f44545f841ccc9b266472ddc0330ae3352eb3b2",
+        "aea9cc0d05ffdea771f8fbb96b557c22164ddd0635e8bccabd017403b1105a8f"
+      ],
+      "settings": [
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "Transformer/cfg3": {
+      "passed": true,
+      "hashes": [
+        "68af482f2bc5ffd1097d546e2aa1696a11081163936fbffe06fce017885ff68a",
+        "68af482f2bc5ffd1097d546e2aa1696a11081163936fbffe06fce017885ff68a",
+        "b58d0fb32da5847f9b3b801d2426ef006ca74885affd9eec312d4d992d90761b"
+      ],
+      "settings": [
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "Transformer/cfg4": {
+      "passed": true,
+      "hashes": [
+        "68af482f2bc5ffd1097d546e2aa1696a11081163936fbffe06fce017885ff68a",
+        "68af482f2bc5ffd1097d546e2aa1696a11081163936fbffe06fce017885ff68a",
+        "b58d0fb32da5847f9b3b801d2426ef006ca74885affd9eec312d4d992d90761b"
+      ],
+      "settings": [
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 0.0001,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "Transformer/cfg5": {
+      "passed": true,
+      "hashes": [
+        "0b3de6277b6bf1d4c51b6b290f44545f841ccc9b266472ddc0330ae3352eb3b2",
+        "0b3de6277b6bf1d4c51b6b290f44545f841ccc9b266472ddc0330ae3352eb3b2",
+        "aea9cc0d05ffdea771f8fbb96b557c22164ddd0635e8bccabd017403b1105a8f"
+      ],
+      "settings": [
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "Transformer/cfg6": {
+      "passed": true,
+      "hashes": [
+        "0b3de6277b6bf1d4c51b6b290f44545f841ccc9b266472ddc0330ae3352eb3b2",
+        "0b3de6277b6bf1d4c51b6b290f44545f841ccc9b266472ddc0330ae3352eb3b2",
+        "aea9cc0d05ffdea771f8fbb96b557c22164ddd0635e8bccabd017403b1105a8f"
+      ],
+      "settings": [
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 64,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "Transformer/cfg7": {
+      "passed": true,
+      "hashes": [
+        "68af482f2bc5ffd1097d546e2aa1696a11081163936fbffe06fce017885ff68a",
+        "68af482f2bc5ffd1097d546e2aa1696a11081163936fbffe06fce017885ff68a",
+        "b58d0fb32da5847f9b3b801d2426ef006ca74885affd9eec312d4d992d90761b"
+      ],
+      "settings": [
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    },
+    "Transformer/cfg8": {
+      "passed": true,
+      "hashes": [
+        "68af482f2bc5ffd1097d546e2aa1696a11081163936fbffe06fce017885ff68a",
+        "68af482f2bc5ffd1097d546e2aa1696a11081163936fbffe06fce017885ff68a",
+        "b58d0fb32da5847f9b3b801d2426ef006ca74885affd9eec312d4d992d90761b"
+      ],
+      "settings": [
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        },
+        {
+          "n_epochs": 100,
+          "early_stop": 5,
+          "batch_size": 8192,
+          "n_jobs": 20,
+          "device": "cuda:0",
+          "lr": 1e-05,
+          "d_model": 128,
+          "dropout": 0,
+          "optimizer": "adam",
+          "loss": "mse"
+        }
+      ]
+    }
+  },
+  "extra_checks": {
+    "test_rank_and_purge": true,
+    "test_ic_known_answers": true,
+    "test_cfg1_and_request_rejection": true,
+    "test_selection_ties": true,
+    "rng/LSTM": true,
+    "rng/Transformer": true
+  },
+  "synthetic": true,
+  "engineering_fixture": false,
+  "spec_sha256": "039ee1cb5955ebae200ca1081309ee6635975217f290f1bb99f138bfef749d28",
+  "runner_sha256": "dcdc484485e6adb129c2bf6d9685910324d4316f1923a1f9dc7d70a024c2e38c",
+  "verifier_sha256": "a63f8d170c3024c592df582019a4d2fab7b3b5af61f7c793e7b179e1ecdbfa7a",
+  "dependencies": {
+    "new_guarded_data_v1.py": "5de86785d2725a48b03ceb4c865926fd3c6516157c23f4780bd86844cbd7efa3",
+    "new_h5_common_v3.py": "2ea3364406d9930572c0c039603226fb4180de67a55c5d7c23cd4e2ee79fdc57",
+    "new_h5_models_v3.py": "7de14bedc4577f8b7b09eb81caf5b3f1c10548eb0e3f6bef0cec9d0b1edb2eb5",
+    "new_bench_dataset.py": "2bd555f8c7052624bcfa43b067f1f81964e8f894c66918531bbd9879e8528616",
+    "new_gate_b_common.py": "12632786f8801d5f233f9293b108e5f6fba5afe75a0b088bd5e8aa5d197ba849",
+    "new_bench_replay.py": "ba32c089c864a9989cb7f12af8c8ff46c0db0f9c73131c16304f03d5e54406f5",
+    "new_run_benchmarks_v2.py": "4a96e6ebbdb6686ed243b162fc03575004e98d0e0ba81e3c10c8c9d8f3789fe6"
+  },
+  "runtime": {
+    "python": "3.13.9",
+    "torch": "2.7.1+cu118",
+    "cuda": "11.8"
+  },
+  "third_party": {
+    "torch": {
+      "distribution": "2.7.1+cu118",
+      "module": "2.7.1+cu118",
+      "cuda": "11.8"
+    },
+    "pyqlib": {
+      "distribution": "0.9.6",
+      "module": "0.9.6"
+    },
+    "xgboost": {
+      "distribution": "3.4.1",
+      "module": "3.4.1"
+    },
+    "lightgbm": {
+      "distribution": "4.7.0",
+      "module": "4.7.0"
+    },
+    "numpy": {
+      "distribution": "2.4.1",
+      "module": "2.4.1"
+    },
+    "pandas": {
+      "distribution": "2.3.3",
+      "module": "2.3.3"
+    },
+    "scipy": {
+      "distribution": "1.17.0",
+      "module": "1.17.0"
+    }
+  }
+}

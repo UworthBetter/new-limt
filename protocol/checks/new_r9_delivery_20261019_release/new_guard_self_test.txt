@@ -1,0 +1,35 @@
+ASSERT positive control constant identity fired
+ASSERT positive control prices fired
+ASSERT positive control prices tuple fired
+ASSERT positive control marks fired
+ASSERT positive control windows fired
+ASSERT positive control candidate fired
+ASSERT positive control feature_mask fired
+ASSERT positive control labels fired
+ASSERT positive control loss_masks fired
+ASSERT positive control targets fired
+ASSERT positive control bench fired
+ASSERT positive control close fired
+ASSERT positive control marks fired
+ASSERT positive control unknown fired
+ASSERT positive control real portfolio terminal fired
+ASSERT positive control prices fired
+ASSERT positive control prices tuple fired
+ASSERT positive control marks fired
+ASSERT positive control windows fired
+ASSERT positive control candidate fired
+ASSERT positive control feature_mask fired
+ASSERT positive control labels fired
+ASSERT positive control loss_masks fired
+ASSERT positive control targets fired
+ASSERT positive control bench fired
+ASSERT positive control close fired
+ASSERT positive control marks fired
+ASSERT positive control unknown fired
+IMPORT __main__ 5de86785d2725a48b03ceb4c865926fd3c6516157c23f4780bd86844cbd7efa3
+IMPORT __mp_main__ 5de86785d2725a48b03ceb4c865926fd3c6516157c23f4780bd86844cbd7efa3
+IMPORT model 5a3dfecb2deaccdc79bd685c87dcd525864cb3f3b98bf5c38655a78da99914f0
+IMPORT v2_w3_ledger 3665511fa081a1a430bbe901324625a062f4ae852688842902f721ed59984f76
+IMPORT v2_w6_policy 6b0cd7ee952a0eb5ebc89f15bd88db0eb1e9693802c06b27e15a12382d9ca8ba
+IMPORT v2_w4_training a960a9951ab52c5455c15f8e0c5d60a783a6beb4beef5b4003ee578f0c21ee43
+SELF-TEST PASS: price/mark/feature guard + positive controls

@@ -1,0 +1,25 @@
+--- frozen-original
++++ new-implementation
+@@ -5,6 +5,7 @@
+         save_path=None,
+         reweighter=None,
+     ):
++        self.per_epoch = []
+         dl_train = dataset.prepare("train", col_set=["feature", "label"], data_key=DataHandlerLP.DK_L)
+         dl_valid = dataset.prepare("valid", col_set=["feature", "label"], data_key=DataHandlerLP.DK_L)
+         if dl_train.empty or dl_valid.empty:
+@@ -57,6 +58,7 @@
+             self.logger.info("evaluating...")
+             train_loss, train_score = self.test_epoch(train_loader)
+             val_loss, val_score = self.test_epoch(valid_loader)
++            val_score = self.diagnostic(dataset, step, train_loss, val_loss, val_score)
+             self.logger.info("train %.6f, valid %.6f" % (train_score, val_score))
+             evals_result["train"].append(train_score)
+             evals_result["valid"].append(val_score)
+@@ -76,5 +78,6 @@
+         self.LSTM_model.load_state_dict(best_param)
+         torch.save(best_param, save_path)
+ 
++        self.best_epoch = best_epoch
+         if self.use_gpu:
+             torch.cuda.empty_cache()
