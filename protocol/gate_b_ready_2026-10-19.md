@@ -120,3 +120,5 @@
 ## 11. 解封后评价执行
 
 各臂评价窗打分（选定+默认规则）→ 只写 `_sealed` → 统一读取汇总 → Gate C 机械判定。
+
+> 注：本文件为内部工作稿；对外送审正本 = `protocol/gate_b_report_en.md`（英文、时间均为 America/Los_Angeles）。
